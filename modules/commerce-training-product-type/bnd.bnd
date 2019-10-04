@@ -1,0 +1,4 @@
+Bundle-Name: commerce-training-product-type
+Bundle-SymbolicName: com.liferay.commerce.training.product.type
+Bundle-Version: 1.0.0
+Export-Package:

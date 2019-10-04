@@ -1,0 +1,17 @@
+dependencies {
+	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.1.0"
+	compileOnly group: "com.liferay", name: "com.liferay.frontend.taglib"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.configuration.metatype.api"
+	compileOnly group: "com.liferay", name: "com.liferay.upload.api"
+	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.data.integration.api", version: "1.0.0"
+	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.data.integration.talend.api", version: "1.0.0"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.util.taglib"
+	compileOnly group: "com.liferay.portal", name: "util-bridges", version: "6.0.4"
+	compileOnly group: "javax.portlet", name: "portlet-api"
+	compileOnly group: "javax.servlet", name: "javax.servlet-api"
+	compileOnly group: "org.osgi", name: "org.osgi.core"
+	compileOnly group: "org.osgi", name: "osgi.cmpn"
+}

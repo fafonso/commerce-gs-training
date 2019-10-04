@@ -1,0 +1,4 @@
+Bundle-Name: commerce-training-custom-product-web
+Bundle-SymbolicName: com.liferay.commerce.training.custom.product.web
+Bundle-Version: 1.0.0
+Web-ContextPath: /commerce-training-custom-product-web

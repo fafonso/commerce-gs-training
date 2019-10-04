@@ -1,0 +1,4 @@
+Bundle-Name: commerce-training-order-validator
+Bundle-SymbolicName: com.liferay.commerce.training.order.validator
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.commerce.training.order.validator.constants
