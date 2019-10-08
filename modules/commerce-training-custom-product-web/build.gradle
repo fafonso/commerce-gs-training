@@ -38,5 +38,5 @@ dependencies {
 	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.price.list.api", version: "4.0.0"
 	compileOnly group: "com.liferay.portal", name: "release.portal.api", version: "7.1.1"
 	compile group: 'com.liferay.commerce', name: 'com.liferay.commerce.product.definitions.web', version: '1.0.4'
-	compileInclude group: "org.apache.poi", name: "poi", version: "3.17"
+	
 }
