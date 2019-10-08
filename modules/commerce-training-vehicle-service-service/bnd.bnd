@@ -1,0 +1,5 @@
+Bundle-Name: commerce-training-vehicle-service-service
+Bundle-SymbolicName: com.liferay.training.vehicle.service.service
+Bundle-Version: 1.0.0
+Liferay-Require-SchemaVersion: 1.0.0
+Liferay-Service: true

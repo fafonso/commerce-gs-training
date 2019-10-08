@@ -1,0 +1,10 @@
+Bundle-Name: commerce-training-vehicle-service-api
+Bundle-SymbolicName: com.liferay.training.vehicle.service.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.training.vehicle.service.exception,\
+	com.liferay.training.vehicle.service.model,\
+	com.liferay.training.vehicle.service.service,\
+	com.liferay.training.vehicle.service.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../commerce-training-vehicle-service-service/service.xml

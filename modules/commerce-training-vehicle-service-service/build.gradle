@@ -1,0 +1,12 @@
+dependencies {
+	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib"
+	compileOnly group: "com.liferay", name: "com.liferay.portal.spring.extender.api"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
+	compileOnly project(":modules:commerce-training-vehicle-service-api")
+}
+
+buildService {
+	apiDir = "../commerce-training-vehicle-service-api/src/main/java"
+}
+
+group = "com.liferay.training.vehicle.service"
