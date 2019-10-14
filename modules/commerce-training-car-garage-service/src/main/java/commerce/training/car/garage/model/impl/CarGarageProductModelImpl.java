@@ -77,7 +77,8 @@ public class CarGarageProductModelImpl
 		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
 		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
 		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
-		{"carGarageId", Types.BIGINT}, {"cpDefinitionId", Types.BIGINT}
+		{"carGarageId", Types.BIGINT}, {"cpDefinitionId", Types.BIGINT},
+		{"title", Types.VARCHAR}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -94,10 +95,11 @@ public class CarGarageProductModelImpl
 		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("carGarageId", Types.BIGINT);
 		TABLE_COLUMNS_MAP.put("cpDefinitionId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("title", Types.VARCHAR);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table CarGarageProduct (uuid_ VARCHAR(75) null,carGarageProductId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,carGarageId LONG,cpDefinitionId LONG)";
+		"create table CarGarageProduct (uuid_ VARCHAR(75) null,carGarageProductId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,carGarageId LONG,cpDefinitionId LONG,title VARCHAR(75) null)";
 
 	public static final String TABLE_SQL_DROP = "drop table CarGarageProduct";
 
@@ -491,6 +493,28 @@ public class CarGarageProductModelImpl
 				}
 
 			});
+		attributeGetterFunctions.put(
+			"title",
+			new Function<CarGarageProduct, Object>() {
+
+				@Override
+				public Object apply(CarGarageProduct carGarageProduct) {
+					return carGarageProduct.getTitle();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"title",
+			new BiConsumer<CarGarageProduct, Object>() {
+
+				@Override
+				public void accept(
+					CarGarageProduct carGarageProduct, Object title) {
+
+					carGarageProduct.setTitle((String)title);
+				}
+
+			});
 
 		_attributeGetterFunctions = Collections.unmodifiableMap(
 			attributeGetterFunctions);
@@ -679,6 +703,21 @@ public class CarGarageProductModelImpl
 	}
 
 	@Override
+	public String getTitle() {
+		if (_title == null) {
+			return "";
+		}
+		else {
+			return _title;
+		}
+	}
+
+	@Override
+	public void setTitle(String title) {
+		_title = title;
+	}
+
+	@Override
 	public StagedModelType getStagedModelType() {
 		return new StagedModelType(
 			PortalUtil.getClassNameId(CarGarageProduct.class.getName()));
@@ -725,6 +764,7 @@ public class CarGarageProductModelImpl
 		carGarageProductImpl.setModifiedDate(getModifiedDate());
 		carGarageProductImpl.setCarGarageId(getCarGarageId());
 		carGarageProductImpl.setCpDefinitionId(getCpDefinitionId());
+		carGarageProductImpl.setTitle(getTitle());
 
 		carGarageProductImpl.resetOriginalValues();
 
@@ -867,6 +907,14 @@ public class CarGarageProductModelImpl
 
 		carGarageProductCacheModel.cpDefinitionId = getCpDefinitionId();
 
+		carGarageProductCacheModel.title = getTitle();
+
+		String title = carGarageProductCacheModel.title;
+
+		if ((title != null) && (title.length() == 0)) {
+			carGarageProductCacheModel.title = null;
+		}
+
 		return carGarageProductCacheModel;
 	}
 
@@ -954,6 +1002,7 @@ public class CarGarageProductModelImpl
 	private long _originalCarGarageId;
 	private boolean _setOriginalCarGarageId;
 	private long _cpDefinitionId;
+	private String _title;
 	private long _columnBitmask;
 	private CarGarageProduct _escapedModel;
 

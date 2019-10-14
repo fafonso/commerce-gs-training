@@ -66,12 +66,12 @@ public class CarGarageProductLocalServiceWrapper
 	@Override
 	public commerce.training.car.garage.model.CarGarageProduct
 			addCarGarageProduct(
-				long cpDefinitionId, long carGarageId,
+				long cpDefinitionId, long carGarageId, String title,
 				com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _carGarageProductLocalService.addCarGarageProduct(
-			cpDefinitionId, carGarageId, serviceContext);
+			cpDefinitionId, carGarageId, title, serviceContext);
 	}
 
 	/**

@@ -224,6 +224,21 @@ public interface CarGarageModel
 	public void setCpDefinitionId(long cpDefinitionId);
 
 	/**
+	 * Returns the title of this car garage.
+	 *
+	 * @return the title of this car garage
+	 */
+	@AutoEscape
+	public String getTitle();
+
+	/**
+	 * Sets the title of this car garage.
+	 *
+	 * @param title the title of this car garage
+	 */
+	public void setTitle(String title);
+
+	/**
 	 * Returns the latitude of this car garage.
 	 *
 	 * @return the latitude of this car garage

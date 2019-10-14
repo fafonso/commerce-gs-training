@@ -62,12 +62,13 @@ public class CarGarageLocalServiceWrapper
 	 */
 	@Override
 	public commerce.training.car.garage.model.CarGarage addCarGarage(
-			double latitude, double longitude, long cpDefinitionId,
+			String title, double latitude, double longitude,
+			long cpDefinitionId,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _carGarageLocalService.addCarGarage(
-			latitude, longitude, cpDefinitionId, serviceContext);
+			title, latitude, longitude, cpDefinitionId, serviceContext);
 	}
 
 	/**
@@ -213,6 +214,13 @@ public class CarGarageLocalServiceWrapper
 	}
 
 	@Override
+	public commerce.training.car.garage.model.CarGarage fetchByCPDefinitionId(
+		long cpDefinitionId) {
+
+		return _carGarageLocalService.fetchByCPDefinitionId(cpDefinitionId);
+	}
+
+	@Override
 	public commerce.training.car.garage.model.CarGarage fetchCarGarage(
 		long carGarageId) {
 
@@ -235,11 +243,11 @@ public class CarGarageLocalServiceWrapper
 	}
 
 	@Override
-	public commerce.training.car.garage.model.CarGarage findByCpDefinitionId(
+	public commerce.training.car.garage.model.CarGarage findByCPDefinitionId(
 			long cpDefinitionId)
 		throws commerce.training.car.garage.exception.NoSuchCarGarageException {
 
-		return _carGarageLocalService.findByCpDefinitionId(cpDefinitionId);
+		return _carGarageLocalService.findByCPDefinitionId(cpDefinitionId);
 	}
 
 	@Override

@@ -1,7 +1,5 @@
 <%@ include file="/init.jsp" %>
 
-<h1>Custom Renderer</h1>
-
 <%--
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
@@ -27,6 +25,13 @@ long cpDefinitionId = cpCatalogEntry.getCPDefinitionId();
 String addToCartId = PortalUtil.generateRandomKey(request, "add-to-cart");
 String galleryId = PortalUtil.generateRandomKey(request, "gallery");
 
+CarGarage carGarage = (CarGarage) request.getAttribute("carGarage");
+List<CarGarageProduct> carGarageProducts = (List<CarGarageProduct>) request.getAttribute("carGarageProducts");
+
+String carServiceName = (String) request.getAttribute("carServiceName");
+Double latitude = (Double) request.getAttribute("latitude");
+Double longitude = (Double) request.getAttribute("longitude");
+
 
 
 %>
@@ -34,14 +39,34 @@ String galleryId = PortalUtil.generateRandomKey(request, "gallery");
 <div class="container-fluid product-detail" id="<portlet:namespace /><%= cpDefinitionId %>ProductContent">
 	<div class="row">
 		<div class="col-6" id="minium-product-gallery">
-
+			
 			<%
-			Map<String, Object> context = new HashMap<>();
-			context.put("images", cpContentHelper.getImages(cpDefinitionId, themeDisplay));
-			context.put("selected", 0);
+				for (CPMedia cpMedia : cpContentHelper.getImages(cpDefinitionId, themeDisplay)) {
 			%>
+	
+			<div class="card thumb" data-url="<%=cpMedia.getUrl()%>">
+				<img class="center-block img-responsive"
+					src="<%=cpMedia.getUrl()%>">
+			</div>
+	
+			<%
+				}
+			%>
+			
+			<h2>Serviceable Products:</h2>
+			<%
+				for (CarGarageProduct carGarageProduct : carGarageProducts) {
+			%>
+				<%= carGarageProduct.getTitle() %><br>
+			<%
+				}
+			%>
+			<br>
+			<h2>Location:</h2>
+			<div id="map_canvas" style="width:660px; height:300px"></div>
+			<br></br>
+			<h2>Rendered using a custom car service renderer!</h2>
 
-		
 		</div>
 
 		<div class="col-6">
@@ -366,3 +391,36 @@ List<CPMedia> cpAttachmentFileEntries = cpContentHelper.getCPAttachmentFileEntri
 		</div>
 	</div>
 </c:if>
+
+
+
+<script type="text/javascript"
+ src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyB-MiT_WlcwrjKMfB_vx_t77SiZqYfHMGk"></script>
+ 
+</script>
+<script type="text/javascript">
+      var map;
+      function initialize() {
+    	console.log(<%= latitude %>);
+    	
+        var mapOptions = {
+          zoom: 8,
+          center: new google.maps.LatLng(<%= latitude %>, <%= longitude %>),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        
+        var map = new google.maps.Map(document.getElementById('map_canvas'),
+            mapOptions);
+        
+        var myLatLng = {lat: <%= latitude %>, lng: <%= longitude %>};
+        
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: '<%= carServiceName %>'
+          });
+        
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+</script>

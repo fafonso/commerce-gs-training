@@ -403,7 +403,7 @@ public interface CarGaragePersistence extends BasePersistence<CarGarage> {
 	 * @return the matching car garage
 	 * @throws NoSuchCarGarageException if a matching car garage could not be found
 	 */
-	public CarGarage findByCpDefinitionId(long cpDefinitionId)
+	public CarGarage findByCPDefinitionId(long cpDefinitionId)
 		throws NoSuchCarGarageException;
 
 	/**
@@ -412,7 +412,7 @@ public interface CarGaragePersistence extends BasePersistence<CarGarage> {
 	 * @param cpDefinitionId the cp definition ID
 	 * @return the matching car garage, or <code>null</code> if a matching car garage could not be found
 	 */
-	public CarGarage fetchByCpDefinitionId(long cpDefinitionId);
+	public CarGarage fetchByCPDefinitionId(long cpDefinitionId);
 
 	/**
 	 * Returns the car garage where cpDefinitionId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -421,7 +421,7 @@ public interface CarGaragePersistence extends BasePersistence<CarGarage> {
 	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the matching car garage, or <code>null</code> if a matching car garage could not be found
 	 */
-	public CarGarage fetchByCpDefinitionId(
+	public CarGarage fetchByCPDefinitionId(
 		long cpDefinitionId, boolean retrieveFromCache);
 
 	/**
@@ -430,7 +430,7 @@ public interface CarGaragePersistence extends BasePersistence<CarGarage> {
 	 * @param cpDefinitionId the cp definition ID
 	 * @return the car garage that was removed
 	 */
-	public CarGarage removeByCpDefinitionId(long cpDefinitionId)
+	public CarGarage removeByCPDefinitionId(long cpDefinitionId)
 		throws NoSuchCarGarageException;
 
 	/**
@@ -439,7 +439,7 @@ public interface CarGaragePersistence extends BasePersistence<CarGarage> {
 	 * @param cpDefinitionId the cp definition ID
 	 * @return the number of matching car garages
 	 */
-	public int countByCpDefinitionId(long cpDefinitionId);
+	public int countByCPDefinitionId(long cpDefinitionId);
 
 	/**
 	 * Returns all the car garages where groupId = &#63;.

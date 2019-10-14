@@ -33,6 +33,7 @@
 		<column name="cpDefinitionId" type="long" />
 
 		<!-- Other fields -->
+		<column name="title" type="String" />
 		<column name="latitude" type="double" />
 		<column name="longitude" type="double" />
 
@@ -43,7 +44,7 @@
 		</order>
 
 		<!-- Finder methods -->
-		<finder name="CpDefinitionId" return-type="CarGarage">
+		<finder name="CPDefinitionId" return-type="CarGarage">
 			<finder-column name="cpDefinitionId" />
 		</finder>
 
@@ -83,6 +84,9 @@
 		<!-- Relationships -->
 		<column name="carGarageId" type="long" />
 		<column name="cpDefinitionId" type="long" />
+		
+		<!-- Other fields -->
+		<column name="title" type="String" />
 
 		<!-- Order -->
 		<order by="asc">
@@ -105,8 +109,8 @@
     <exceptions>
         <exception>CarGarageLatitude</exception>
         <exception>CarGarageLongitude</exception>
-        <exception>CarGarageCpDefinitionId</exception>
-        <exception>CarGarageProductCpDefinitionId</exception>
+        <exception>CarGarageCPDefinitionId</exception>
+        <exception>CarGarageProductCPDefinitionId</exception>
         <exception>CarGarageProductCarGarageId</exception>
     </exceptions>
 

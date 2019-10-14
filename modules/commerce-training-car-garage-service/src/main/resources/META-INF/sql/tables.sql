@@ -8,6 +8,7 @@ create table CarGarage (
 	createDate DATE null,
 	modifiedDate DATE null,
 	cpDefinitionId LONG,
+	title VARCHAR(75) null,
 	latitude DOUBLE,
 	longitude DOUBLE
 );
@@ -22,5 +23,6 @@ create table CarGarageProduct (
 	createDate DATE null,
 	modifiedDate DATE null,
 	carGarageId LONG,
-	cpDefinitionId LONG
+	cpDefinitionId LONG,
+	title VARCHAR(75) null
 );

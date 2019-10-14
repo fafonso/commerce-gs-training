@@ -69,6 +69,7 @@ public class CarGarageProductWrapper
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("carGarageId", getCarGarageId());
 		attributes.put("cpDefinitionId", getCpDefinitionId());
+		attributes.put("title", getTitle());
 
 		return attributes;
 	}
@@ -133,6 +134,12 @@ public class CarGarageProductWrapper
 
 		if (cpDefinitionId != null) {
 			setCpDefinitionId(cpDefinitionId);
+		}
+
+		String title = (String)attributes.get("title");
+
+		if (title != null) {
+			setTitle(title);
 		}
 	}
 
@@ -237,6 +244,16 @@ public class CarGarageProductWrapper
 	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _carGarageProduct.getPrimaryKeyObj();
+	}
+
+	/**
+	 * Returns the title of this car garage product.
+	 *
+	 * @return the title of this car garage product
+	 */
+	@Override
+	public String getTitle() {
+		return _carGarageProduct.getTitle();
 	}
 
 	/**
@@ -414,6 +431,16 @@ public class CarGarageProductWrapper
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		_carGarageProduct.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	 * Sets the title of this car garage product.
+	 *
+	 * @param title the title of this car garage product
+	 */
+	@Override
+	public void setTitle(String title) {
+		_carGarageProduct.setTitle(title);
 	}
 
 	/**

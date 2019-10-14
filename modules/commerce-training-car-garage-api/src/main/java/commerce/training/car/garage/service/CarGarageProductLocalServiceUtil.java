@@ -68,12 +68,12 @@ public class CarGarageProductLocalServiceUtil {
 	 */
 	public static commerce.training.car.garage.model.CarGarageProduct
 			addCarGarageProduct(
-				long cpDefinitionId, long carGarageId,
+				long cpDefinitionId, long carGarageId, String title,
 				com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().addCarGarageProduct(
-			cpDefinitionId, carGarageId, serviceContext);
+			cpDefinitionId, carGarageId, title, serviceContext);
 	}
 
 	/**

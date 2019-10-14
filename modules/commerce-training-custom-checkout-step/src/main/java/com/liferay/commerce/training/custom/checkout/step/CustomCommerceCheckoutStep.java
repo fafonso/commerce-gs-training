@@ -1,8 +1,15 @@
+
 package com.liferay.commerce.training.custom.checkout.step;
 
+import com.liferay.commerce.constants.CommerceCheckoutWebKeys;
+import com.liferay.commerce.model.CommerceOrder;
+import com.liferay.commerce.model.CommerceOrderItem;
 import com.liferay.commerce.util.CommerceCheckoutStep;
 import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
+import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 
+import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import javax.portlet.ActionRequest;
@@ -14,21 +21,18 @@ import javax.servlet.http.HttpServletResponse;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(
-	    immediate = true,
-	    property = {
-	        "commerce.checkout.step.name=" + CustomCommerceCheckoutStep.NAME,
-	        "commerce.checkout.step.order:Integer=" + (Integer.MAX_VALUE - 101)
-	    },
-	    service = CommerceCheckoutStep.class
-	)
+@Component(immediate = true, property = {
+	"commerce.checkout.step.name=" + CustomCommerceCheckoutStep.NAME,
+	"commerce.checkout.step.order:Integer=" + (Integer.MAX_VALUE - 151)
+}, service = CommerceCheckoutStep.class)
 public class CustomCommerceCheckoutStep implements CommerceCheckoutStep {
 
-	 public static final String NAME = "Custom";
-	
+	public static final String NAME = "Car Service Booking";
+
 	@Override
 	public String getLabel(Locale locale) {
-
+		Calendar a = CalendarFactoryUtil.getCalendar();
+		System.out.println(a.YEAR);
 		return NAME;
 	}
 
@@ -39,10 +43,25 @@ public class CustomCommerceCheckoutStep implements CommerceCheckoutStep {
 	}
 
 	@Override
-	public boolean isActive(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
-			throws Exception {
+	public boolean isActive(
+		HttpServletRequest httpServletRequest,
+		HttpServletResponse httpServletResponse)
+		throws Exception {
 
-		return true;
+		CommerceOrder commerceOrder =
+			(CommerceOrder) httpServletRequest.getAttribute(
+				CommerceCheckoutWebKeys.COMMERCE_ORDER);
+
+		List<CommerceOrderItem> commerceOrderItems =
+			commerceOrder.getCommerceOrderItems();
+
+		for (CommerceOrderItem commerceOrderItem : commerceOrderItems) {
+			if (commerceOrderItem.getCPDefinition().getProductTypeName().equals(
+				"Vehicle Service")) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -58,37 +77,44 @@ public class CustomCommerceCheckoutStep implements CommerceCheckoutStep {
 	}
 
 	@Override
-	public boolean isVisible(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
-			throws Exception {
+	public boolean isVisible(
+		HttpServletRequest httpServletRequest,
+		HttpServletResponse httpServletResponse)
+		throws Exception {
 
 		return isActive(httpServletRequest, httpServletResponse);
 	}
 
 	@Override
-	public void processAction(ActionRequest actionRequest, ActionResponse actionResponse) throws Exception {
-		// empty
-		
+	public void processAction(
+		ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
 	}
 
 	@Override
-	public void render(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
-			throws Exception {
-		 _jspRenderer.renderJSP(
-			        _servletContext, httpServletRequest, httpServletResponse,
-			        "/checkout_step/view.jsp");		
+	public void render(
+		HttpServletRequest httpServletRequest,
+		HttpServletResponse httpServletResponse)
+		throws Exception {
+
+		_jspRenderer.renderJSP(
+			_servletContext, httpServletRequest, httpServletResponse,
+			"/checkout_step/view.jsp");
 	}
 
 	@Override
-	public boolean showControls(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+	public boolean showControls(
+		HttpServletRequest httpServletRequest,
+		HttpServletResponse httpServletResponse) {
 
-		return false;
+		return true;
 	}
 
-	
 	@Reference
-    private JSPRenderer _jspRenderer;
+	private JSPRenderer _jspRenderer;
 
-    @Reference(target = "(osgi.web.symbolicname=com.liferay.commerce.training.custom.checkout.step)")
-    private ServletContext _servletContext;
+	@Reference(target = "(osgi.web.symbolicname=com.liferay.commerce.training.custom.checkout.step)")
+	private ServletContext _servletContext;
 
 }

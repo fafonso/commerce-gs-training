@@ -88,7 +88,7 @@ public interface CarGarageProductLocalService
 	 * @exception PortalException
 	 */
 	public CarGarageProduct addCarGarageProduct(
-			long cpDefinitionId, long carGarageId,
+			long cpDefinitionId, long carGarageId, String title,
 			ServiceContext serviceContext)
 		throws PortalException;
 

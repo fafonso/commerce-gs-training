@@ -43,6 +43,7 @@ public class CarGarageSoap implements Serializable {
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setCpDefinitionId(model.getCpDefinitionId());
+		soapModel.setTitle(model.getTitle());
 		soapModel.setLatitude(model.getLatitude());
 		soapModel.setLongitude(model.getLongitude());
 
@@ -170,6 +171,14 @@ public class CarGarageSoap implements Serializable {
 		_cpDefinitionId = cpDefinitionId;
 	}
 
+	public String getTitle() {
+		return _title;
+	}
+
+	public void setTitle(String title) {
+		_title = title;
+	}
+
 	public double getLatitude() {
 		return _latitude;
 	}
@@ -195,6 +204,7 @@ public class CarGarageSoap implements Serializable {
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _cpDefinitionId;
+	private String _title;
 	private double _latitude;
 	private double _longitude;
 

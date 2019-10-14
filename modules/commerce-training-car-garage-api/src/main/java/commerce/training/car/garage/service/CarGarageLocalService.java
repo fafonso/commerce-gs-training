@@ -88,8 +88,8 @@ public interface CarGarageLocalService
 	 * @exception PortalException
 	 */
 	public CarGarage addCarGarage(
-			double latitude, double longitude, long cpDefinitionId,
-			ServiceContext serviceContext)
+			String title, double latitude, double longitude,
+			long cpDefinitionId, ServiceContext serviceContext)
 		throws PortalException;
 
 	/**
@@ -194,6 +194,9 @@ public interface CarGarageLocalService
 		DynamicQuery dynamicQuery, Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public CarGarage fetchByCPDefinitionId(long cpDefinitionId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public CarGarage fetchCarGarage(long carGarageId);
 
 	/**
@@ -206,7 +209,7 @@ public interface CarGarageLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public CarGarage fetchCarGarageByUuidAndGroupId(String uuid, long groupId);
 
-	public CarGarage findByCpDefinitionId(long cpDefinitionId)
+	public CarGarage findByCPDefinitionId(long cpDefinitionId)
 		throws NoSuchCarGarageException;
 
 	public CarGarage findByPrimaryKey(long carGarageId)

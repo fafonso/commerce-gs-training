@@ -11,6 +11,7 @@
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="cpDefinitionId" type="long" />
+		<field name="title" type="String" />
 		<field name="latitude" type="double" />
 		<field name="longitude" type="double" />
 	</model>
@@ -25,5 +26,6 @@
 		<field name="modifiedDate" type="Date" />
 		<field name="carGarageId" type="long" />
 		<field name="cpDefinitionId" type="long" />
+		<field name="title" type="String" />
 	</model>
 </model-hints>

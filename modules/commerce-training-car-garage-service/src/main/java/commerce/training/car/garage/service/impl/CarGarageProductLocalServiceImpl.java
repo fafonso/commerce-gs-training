@@ -22,8 +22,8 @@ import com.liferay.portal.kernel.util.Validator;
 import java.util.Date;
 import java.util.List;
 
+import commerce.training.car.garage.exception.CarGarageProductCPDefinitionIdException;
 import commerce.training.car.garage.exception.CarGarageProductCarGarageIdException;
-import commerce.training.car.garage.exception.CarGarageProductCpDefinitionIdException;
 import commerce.training.car.garage.exception.NoSuchCarGarageProductException;
 import commerce.training.car.garage.model.CarGarageProduct;
 import commerce.training.car.garage.service.base.CarGarageProductLocalServiceBaseImpl;
@@ -74,7 +74,7 @@ public class CarGarageProductLocalServiceImpl
 	 */
 	@Override
 	public CarGarageProduct addCarGarageProduct(
-		long cpDefinitionId, long carGarageId, ServiceContext serviceContext)
+		long cpDefinitionId, long carGarageId, String title, ServiceContext serviceContext)
 		throws PortalException {
 
 		validate(cpDefinitionId, carGarageId);
@@ -94,6 +94,7 @@ public class CarGarageProductLocalServiceImpl
 
 		carGarageProduct.setCpDefinitionId(cpDefinitionId);
 		carGarageProduct.setCarGarageId(carGarageId);
+		carGarageProduct.setTitle(title);
 
 		return carGarageProductPersistence.update(carGarageProduct);
 
@@ -116,7 +117,7 @@ public class CarGarageProductLocalServiceImpl
 		throws PortalException {
 
 		if (Validator.isNull(cpDefinitionId)) {
-			throw new CarGarageProductCpDefinitionIdException();
+			throw new CarGarageProductCPDefinitionIdException();
 		}
 
 		if (Validator.isNull(carGarageId)) {

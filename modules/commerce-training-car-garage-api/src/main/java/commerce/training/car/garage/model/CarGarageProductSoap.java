@@ -44,6 +44,7 @@ public class CarGarageProductSoap implements Serializable {
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setCarGarageId(model.getCarGarageId());
 		soapModel.setCpDefinitionId(model.getCpDefinitionId());
+		soapModel.setTitle(model.getTitle());
 
 		return soapModel;
 	}
@@ -185,6 +186,14 @@ public class CarGarageProductSoap implements Serializable {
 		_cpDefinitionId = cpDefinitionId;
 	}
 
+	public String getTitle() {
+		return _title;
+	}
+
+	public void setTitle(String title) {
+		_title = title;
+	}
+
 	private String _uuid;
 	private long _carGarageProductId;
 	private long _groupId;
@@ -195,5 +204,6 @@ public class CarGarageProductSoap implements Serializable {
 	private Date _modifiedDate;
 	private long _carGarageId;
 	private long _cpDefinitionId;
+	private String _title;
 
 }

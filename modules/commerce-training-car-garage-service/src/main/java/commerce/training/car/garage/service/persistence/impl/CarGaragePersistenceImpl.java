@@ -1468,8 +1468,8 @@ public class CarGaragePersistenceImpl
 	private static final String _FINDER_COLUMN_UUID_C_COMPANYID_2 =
 		"carGarage.companyId = ?";
 
-	private FinderPath _finderPathFetchByCpDefinitionId;
-	private FinderPath _finderPathCountByCpDefinitionId;
+	private FinderPath _finderPathFetchByCPDefinitionId;
+	private FinderPath _finderPathCountByCPDefinitionId;
 
 	/**
 	 * Returns the car garage where cpDefinitionId = &#63; or throws a <code>NoSuchCarGarageException</code> if it could not be found.
@@ -1479,10 +1479,10 @@ public class CarGaragePersistenceImpl
 	 * @throws NoSuchCarGarageException if a matching car garage could not be found
 	 */
 	@Override
-	public CarGarage findByCpDefinitionId(long cpDefinitionId)
+	public CarGarage findByCPDefinitionId(long cpDefinitionId)
 		throws NoSuchCarGarageException {
 
-		CarGarage carGarage = fetchByCpDefinitionId(cpDefinitionId);
+		CarGarage carGarage = fetchByCPDefinitionId(cpDefinitionId);
 
 		if (carGarage == null) {
 			StringBundler msg = new StringBundler(4);
@@ -1511,8 +1511,8 @@ public class CarGaragePersistenceImpl
 	 * @return the matching car garage, or <code>null</code> if a matching car garage could not be found
 	 */
 	@Override
-	public CarGarage fetchByCpDefinitionId(long cpDefinitionId) {
-		return fetchByCpDefinitionId(cpDefinitionId, true);
+	public CarGarage fetchByCPDefinitionId(long cpDefinitionId) {
+		return fetchByCPDefinitionId(cpDefinitionId, true);
 	}
 
 	/**
@@ -1523,7 +1523,7 @@ public class CarGaragePersistenceImpl
 	 * @return the matching car garage, or <code>null</code> if a matching car garage could not be found
 	 */
 	@Override
-	public CarGarage fetchByCpDefinitionId(
+	public CarGarage fetchByCPDefinitionId(
 		long cpDefinitionId, boolean retrieveFromCache) {
 
 		Object[] finderArgs = new Object[] {cpDefinitionId};
@@ -1532,7 +1532,7 @@ public class CarGaragePersistenceImpl
 
 		if (retrieveFromCache) {
 			result = finderCache.getResult(
-				_finderPathFetchByCpDefinitionId, finderArgs, this);
+				_finderPathFetchByCPDefinitionId, finderArgs, this);
 		}
 
 		if (result instanceof CarGarage) {
@@ -1567,7 +1567,7 @@ public class CarGaragePersistenceImpl
 
 				if (list.isEmpty()) {
 					finderCache.putResult(
-						_finderPathFetchByCpDefinitionId, finderArgs, list);
+						_finderPathFetchByCPDefinitionId, finderArgs, list);
 				}
 				else {
 					if (list.size() > 1) {
@@ -1575,7 +1575,7 @@ public class CarGaragePersistenceImpl
 
 						if (_log.isWarnEnabled()) {
 							_log.warn(
-								"CarGaragePersistenceImpl.fetchByCpDefinitionId(long, boolean) with parameters (" +
+								"CarGaragePersistenceImpl.fetchByCPDefinitionId(long, boolean) with parameters (" +
 									StringUtil.merge(finderArgs) +
 										") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
 						}
@@ -1590,7 +1590,7 @@ public class CarGaragePersistenceImpl
 			}
 			catch (Exception e) {
 				finderCache.removeResult(
-					_finderPathFetchByCpDefinitionId, finderArgs);
+					_finderPathFetchByCPDefinitionId, finderArgs);
 
 				throw processException(e);
 			}
@@ -1614,10 +1614,10 @@ public class CarGaragePersistenceImpl
 	 * @return the car garage that was removed
 	 */
 	@Override
-	public CarGarage removeByCpDefinitionId(long cpDefinitionId)
+	public CarGarage removeByCPDefinitionId(long cpDefinitionId)
 		throws NoSuchCarGarageException {
 
-		CarGarage carGarage = findByCpDefinitionId(cpDefinitionId);
+		CarGarage carGarage = findByCPDefinitionId(cpDefinitionId);
 
 		return remove(carGarage);
 	}
@@ -1629,8 +1629,8 @@ public class CarGaragePersistenceImpl
 	 * @return the number of matching car garages
 	 */
 	@Override
-	public int countByCpDefinitionId(long cpDefinitionId) {
-		FinderPath finderPath = _finderPathCountByCpDefinitionId;
+	public int countByCPDefinitionId(long cpDefinitionId) {
+		FinderPath finderPath = _finderPathCountByCPDefinitionId;
 
 		Object[] finderArgs = new Object[] {cpDefinitionId};
 
@@ -2216,7 +2216,7 @@ public class CarGaragePersistenceImpl
 			carGarage);
 
 		finderCache.putResult(
-			_finderPathFetchByCpDefinitionId,
+			_finderPathFetchByCPDefinitionId,
 			new Object[] {carGarage.getCpDefinitionId()}, carGarage);
 
 		carGarage.resetOriginalValues();
@@ -2306,9 +2306,9 @@ public class CarGaragePersistenceImpl
 		args = new Object[] {carGarageModelImpl.getCpDefinitionId()};
 
 		finderCache.putResult(
-			_finderPathCountByCpDefinitionId, args, Long.valueOf(1), false);
+			_finderPathCountByCPDefinitionId, args, Long.valueOf(1), false);
 		finderCache.putResult(
-			_finderPathFetchByCpDefinitionId, args, carGarageModelImpl, false);
+			_finderPathFetchByCPDefinitionId, args, carGarageModelImpl, false);
 	}
 
 	protected void clearUniqueFindersCache(
@@ -2340,19 +2340,19 @@ public class CarGaragePersistenceImpl
 				carGarageModelImpl.getCpDefinitionId()
 			};
 
-			finderCache.removeResult(_finderPathCountByCpDefinitionId, args);
-			finderCache.removeResult(_finderPathFetchByCpDefinitionId, args);
+			finderCache.removeResult(_finderPathCountByCPDefinitionId, args);
+			finderCache.removeResult(_finderPathFetchByCPDefinitionId, args);
 		}
 
 		if ((carGarageModelImpl.getColumnBitmask() &
-			 _finderPathFetchByCpDefinitionId.getColumnBitmask()) != 0) {
+			 _finderPathFetchByCPDefinitionId.getColumnBitmask()) != 0) {
 
 			Object[] args = new Object[] {
 				carGarageModelImpl.getOriginalCpDefinitionId()
 			};
 
-			finderCache.removeResult(_finderPathCountByCpDefinitionId, args);
-			finderCache.removeResult(_finderPathFetchByCpDefinitionId, args);
+			finderCache.removeResult(_finderPathCountByCPDefinitionId, args);
+			finderCache.removeResult(_finderPathFetchByCPDefinitionId, args);
 		}
 	}
 
@@ -3124,17 +3124,17 @@ public class CarGaragePersistenceImpl
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByUuid_C",
 			new String[] {String.class.getName(), Long.class.getName()});
 
-		_finderPathFetchByCpDefinitionId = new FinderPath(
+		_finderPathFetchByCPDefinitionId = new FinderPath(
 			CarGarageModelImpl.ENTITY_CACHE_ENABLED,
 			CarGarageModelImpl.FINDER_CACHE_ENABLED, CarGarageImpl.class,
-			FINDER_CLASS_NAME_ENTITY, "fetchByCpDefinitionId",
+			FINDER_CLASS_NAME_ENTITY, "fetchByCPDefinitionId",
 			new String[] {Long.class.getName()},
 			CarGarageModelImpl.CPDEFINITIONID_COLUMN_BITMASK);
 
-		_finderPathCountByCpDefinitionId = new FinderPath(
+		_finderPathCountByCPDefinitionId = new FinderPath(
 			CarGarageModelImpl.ENTITY_CACHE_ENABLED,
 			CarGarageModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCpDefinitionId",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByCPDefinitionId",
 			new String[] {Long.class.getName()});
 
 		_finderPathWithPaginationFindByGroupId = new FinderPath(

@@ -66,12 +66,13 @@ public class CarGarageLocalServiceUtil {
 	 * @exception PortalException
 	 */
 	public static commerce.training.car.garage.model.CarGarage addCarGarage(
-			double latitude, double longitude, long cpDefinitionId,
+			String title, double latitude, double longitude,
+			long cpDefinitionId,
 			com.liferay.portal.kernel.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().addCarGarage(
-			latitude, longitude, cpDefinitionId, serviceContext);
+			title, latitude, longitude, cpDefinitionId, serviceContext);
 	}
 
 	/**
@@ -208,6 +209,12 @@ public class CarGarageLocalServiceUtil {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
+	public static commerce.training.car.garage.model.CarGarage
+		fetchByCPDefinitionId(long cpDefinitionId) {
+
+		return getService().fetchByCPDefinitionId(cpDefinitionId);
+	}
+
 	public static commerce.training.car.garage.model.CarGarage fetchCarGarage(
 		long carGarageId) {
 
@@ -228,10 +235,10 @@ public class CarGarageLocalServiceUtil {
 	}
 
 	public static commerce.training.car.garage.model.CarGarage
-			findByCpDefinitionId(long cpDefinitionId)
+			findByCPDefinitionId(long cpDefinitionId)
 		throws commerce.training.car.garage.exception.NoSuchCarGarageException {
 
-		return getService().findByCpDefinitionId(cpDefinitionId);
+		return getService().findByCPDefinitionId(cpDefinitionId);
 	}
 
 	public static commerce.training.car.garage.model.CarGarage findByPrimaryKey(

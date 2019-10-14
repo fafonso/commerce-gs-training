@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Date;
 
-import commerce.training.car.garage.exception.CarGarageCpDefinitionIdException;
+import commerce.training.car.garage.exception.CarGarageCPDefinitionIdException;
 import commerce.training.car.garage.exception.CarGarageLatitudeException;
 import commerce.training.car.garage.exception.CarGarageLongitudeException;
 import commerce.training.car.garage.exception.NoSuchCarGarageException;
@@ -64,7 +64,7 @@ public class CarGarageLocalServiceImpl extends CarGarageLocalServiceBaseImpl {
 	 * @exception PortalException
 	 */
 	@Override
-	public CarGarage addCarGarage(
+	public CarGarage addCarGarage(String title,
 		double latitude, double longitude, long cpDefinitionId,
 		ServiceContext serviceContext)
 		throws PortalException {
@@ -80,10 +80,12 @@ public class CarGarageLocalServiceImpl extends CarGarageLocalServiceBaseImpl {
 
 		carGarage.setCompanyId(user.getCompanyId());
 		carGarage.setUserId(user.getUserId());
-
+		carGarage.setUserName(user.getScreenName());
+		
 		carGarage.setCreateDate(new Date());
 		carGarage.setModifiedDate(new Date());
 
+		carGarage.setTitle(title);
 		carGarage.setLatitude(latitude);
 		carGarage.setLongitude(longitude);
 		carGarage.setCpDefinitionId(cpDefinitionId);
@@ -102,10 +104,16 @@ public class CarGarageLocalServiceImpl extends CarGarageLocalServiceBaseImpl {
 	}
 
 	@Override
-	public CarGarage findByCpDefinitionId(long cpDefinitionId)
+	public CarGarage fetchByCPDefinitionId(long cpDefinitionId) {
+
+		return carGaragePersistence.fetchByCPDefinitionId(cpDefinitionId);
+	}
+	
+	@Override
+	public CarGarage findByCPDefinitionId(long cpDefinitionId)
 		throws NoSuchCarGarageException {
 
-		return carGaragePersistence.findByCpDefinitionId(cpDefinitionId);
+		return carGaragePersistence.findByCPDefinitionId(cpDefinitionId);
 	}
 
 	protected void validate(
@@ -121,7 +129,7 @@ public class CarGarageLocalServiceImpl extends CarGarageLocalServiceBaseImpl {
 		}
 
 		if (Validator.isNull(cpDefinitionId)) {
-			throw new CarGarageCpDefinitionIdException();
+			throw new CarGarageCPDefinitionIdException();
 		}
 	}
 

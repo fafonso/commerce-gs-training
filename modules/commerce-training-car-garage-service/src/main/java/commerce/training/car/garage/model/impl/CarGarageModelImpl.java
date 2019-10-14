@@ -78,8 +78,8 @@ public class CarGarageModelImpl
 		{"groupId", Types.BIGINT}, {"companyId", Types.BIGINT},
 		{"userId", Types.BIGINT}, {"userName", Types.VARCHAR},
 		{"createDate", Types.TIMESTAMP}, {"modifiedDate", Types.TIMESTAMP},
-		{"cpDefinitionId", Types.BIGINT}, {"latitude", Types.DOUBLE},
-		{"longitude", Types.DOUBLE}
+		{"cpDefinitionId", Types.BIGINT}, {"title", Types.VARCHAR},
+		{"latitude", Types.DOUBLE}, {"longitude", Types.DOUBLE}
 	};
 
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP =
@@ -95,12 +95,13 @@ public class CarGarageModelImpl
 		TABLE_COLUMNS_MAP.put("createDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("modifiedDate", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("cpDefinitionId", Types.BIGINT);
+		TABLE_COLUMNS_MAP.put("title", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("latitude", Types.DOUBLE);
 		TABLE_COLUMNS_MAP.put("longitude", Types.DOUBLE);
 	}
 
 	public static final String TABLE_SQL_CREATE =
-		"create table CarGarage (uuid_ VARCHAR(75) null,carGarageId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,cpDefinitionId LONG,latitude DOUBLE,longitude DOUBLE)";
+		"create table CarGarage (uuid_ VARCHAR(75) null,carGarageId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,cpDefinitionId LONG,title VARCHAR(75) null,latitude DOUBLE,longitude DOUBLE)";
 
 	public static final String TABLE_SQL_DROP = "drop table CarGarage";
 
@@ -450,6 +451,26 @@ public class CarGarageModelImpl
 
 			});
 		attributeGetterFunctions.put(
+			"title",
+			new Function<CarGarage, Object>() {
+
+				@Override
+				public Object apply(CarGarage carGarage) {
+					return carGarage.getTitle();
+				}
+
+			});
+		attributeSetterBiConsumers.put(
+			"title",
+			new BiConsumer<CarGarage, Object>() {
+
+				@Override
+				public void accept(CarGarage carGarage, Object title) {
+					carGarage.setTitle((String)title);
+				}
+
+			});
+		attributeGetterFunctions.put(
 			"latitude",
 			new Function<CarGarage, Object>() {
 
@@ -667,6 +688,21 @@ public class CarGarageModelImpl
 	}
 
 	@Override
+	public String getTitle() {
+		if (_title == null) {
+			return "";
+		}
+		else {
+			return _title;
+		}
+	}
+
+	@Override
+	public void setTitle(String title) {
+		_title = title;
+	}
+
+	@Override
 	public double getLatitude() {
 		return _latitude;
 	}
@@ -732,6 +768,7 @@ public class CarGarageModelImpl
 		carGarageImpl.setCreateDate(getCreateDate());
 		carGarageImpl.setModifiedDate(getModifiedDate());
 		carGarageImpl.setCpDefinitionId(getCpDefinitionId());
+		carGarageImpl.setTitle(getTitle());
 		carGarageImpl.setLatitude(getLatitude());
 		carGarageImpl.setLongitude(getLongitude());
 
@@ -862,6 +899,14 @@ public class CarGarageModelImpl
 
 		carGarageCacheModel.cpDefinitionId = getCpDefinitionId();
 
+		carGarageCacheModel.title = getTitle();
+
+		String title = carGarageCacheModel.title;
+
+		if ((title != null) && (title.length() == 0)) {
+			carGarageCacheModel.title = null;
+		}
+
 		carGarageCacheModel.latitude = getLatitude();
 
 		carGarageCacheModel.longitude = getLongitude();
@@ -952,6 +997,7 @@ public class CarGarageModelImpl
 	private long _cpDefinitionId;
 	private long _originalCpDefinitionId;
 	private boolean _setOriginalCpDefinitionId;
+	private String _title;
 	private double _latitude;
 	private double _longitude;
 	private long _columnBitmask;

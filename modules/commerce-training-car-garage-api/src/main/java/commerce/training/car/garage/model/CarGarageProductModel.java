@@ -237,6 +237,21 @@ public interface CarGarageProductModel
 	 */
 	public void setCpDefinitionId(long cpDefinitionId);
 
+	/**
+	 * Returns the title of this car garage product.
+	 *
+	 * @return the title of this car garage product
+	 */
+	@AutoEscape
+	public String getTitle();
+
+	/**
+	 * Sets the title of this car garage product.
+	 *
+	 * @param title the title of this car garage product
+	 */
+	public void setTitle(String title);
+
 	@Override
 	public boolean isNew();
 

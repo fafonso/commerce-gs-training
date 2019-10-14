@@ -65,7 +65,7 @@ public class CarGarageCacheModel
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -85,6 +85,8 @@ public class CarGarageCacheModel
 		sb.append(modifiedDate);
 		sb.append(", cpDefinitionId=");
 		sb.append(cpDefinitionId);
+		sb.append(", title=");
+		sb.append(title);
 		sb.append(", latitude=");
 		sb.append(latitude);
 		sb.append(", longitude=");
@@ -132,6 +134,14 @@ public class CarGarageCacheModel
 		}
 
 		carGarageImpl.setCpDefinitionId(cpDefinitionId);
+
+		if (title == null) {
+			carGarageImpl.setTitle("");
+		}
+		else {
+			carGarageImpl.setTitle(title);
+		}
+
 		carGarageImpl.setLatitude(latitude);
 		carGarageImpl.setLongitude(longitude);
 
@@ -156,6 +166,7 @@ public class CarGarageCacheModel
 		modifiedDate = objectInput.readLong();
 
 		cpDefinitionId = objectInput.readLong();
+		title = objectInput.readUTF();
 
 		latitude = objectInput.readDouble();
 
@@ -191,6 +202,13 @@ public class CarGarageCacheModel
 
 		objectOutput.writeLong(cpDefinitionId);
 
+		if (title == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(title);
+		}
+
 		objectOutput.writeDouble(latitude);
 
 		objectOutput.writeDouble(longitude);
@@ -205,6 +223,7 @@ public class CarGarageCacheModel
 	public long createDate;
 	public long modifiedDate;
 	public long cpDefinitionId;
+	public String title;
 	public double latitude;
 	public double longitude;
 

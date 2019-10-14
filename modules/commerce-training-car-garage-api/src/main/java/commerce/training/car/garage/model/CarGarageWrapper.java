@@ -67,6 +67,7 @@ public class CarGarageWrapper implements CarGarage, ModelWrapper<CarGarage> {
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("cpDefinitionId", getCpDefinitionId());
+		attributes.put("title", getTitle());
 		attributes.put("latitude", getLatitude());
 		attributes.put("longitude", getLongitude());
 
@@ -127,6 +128,12 @@ public class CarGarageWrapper implements CarGarage, ModelWrapper<CarGarage> {
 
 		if (cpDefinitionId != null) {
 			setCpDefinitionId(cpDefinitionId);
+		}
+
+		String title = (String)attributes.get("title");
+
+		if (title != null) {
+			setTitle(title);
 		}
 
 		Double latitude = (Double)attributes.get("latitude");
@@ -252,6 +259,16 @@ public class CarGarageWrapper implements CarGarage, ModelWrapper<CarGarage> {
 	@Override
 	public Serializable getPrimaryKeyObj() {
 		return _carGarage.getPrimaryKeyObj();
+	}
+
+	/**
+	 * Returns the title of this car garage.
+	 *
+	 * @return the title of this car garage
+	 */
+	@Override
+	public String getTitle() {
+		return _carGarage.getTitle();
 	}
 
 	/**
@@ -439,6 +456,16 @@ public class CarGarageWrapper implements CarGarage, ModelWrapper<CarGarage> {
 	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		_carGarage.setPrimaryKeyObj(primaryKeyObj);
+	}
+
+	/**
+	 * Sets the title of this car garage.
+	 *
+	 * @param title the title of this car garage
+	 */
+	@Override
+	public void setTitle(String title) {
+		_carGarage.setTitle(title);
 	}
 
 	/**

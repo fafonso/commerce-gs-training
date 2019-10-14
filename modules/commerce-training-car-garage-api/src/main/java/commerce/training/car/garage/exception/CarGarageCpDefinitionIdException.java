@@ -21,20 +21,20 @@ import com.liferay.portal.kernel.exception.PortalException;
  * @author Gavin Hinfey
  */
 @ProviderType
-public class CarGarageCpDefinitionIdException extends PortalException {
+public class CarGarageCPDefinitionIdException extends PortalException {
 
-	public CarGarageCpDefinitionIdException() {
+	public CarGarageCPDefinitionIdException() {
 	}
 
-	public CarGarageCpDefinitionIdException(String msg) {
+	public CarGarageCPDefinitionIdException(String msg) {
 		super(msg);
 	}
 
-	public CarGarageCpDefinitionIdException(String msg, Throwable cause) {
+	public CarGarageCPDefinitionIdException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public CarGarageCpDefinitionIdException(Throwable cause) {
+	public CarGarageCPDefinitionIdException(Throwable cause) {
 		super(cause);
 	}
 

@@ -68,7 +68,7 @@ public class CarGarageProductCacheModel
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -90,6 +90,8 @@ public class CarGarageProductCacheModel
 		sb.append(carGarageId);
 		sb.append(", cpDefinitionId=");
 		sb.append(cpDefinitionId);
+		sb.append(", title=");
+		sb.append(title);
 		sb.append("}");
 
 		return sb.toString();
@@ -135,6 +137,13 @@ public class CarGarageProductCacheModel
 		carGarageProductImpl.setCarGarageId(carGarageId);
 		carGarageProductImpl.setCpDefinitionId(cpDefinitionId);
 
+		if (title == null) {
+			carGarageProductImpl.setTitle("");
+		}
+		else {
+			carGarageProductImpl.setTitle(title);
+		}
+
 		carGarageProductImpl.resetOriginalValues();
 
 		return carGarageProductImpl;
@@ -158,6 +167,7 @@ public class CarGarageProductCacheModel
 		carGarageId = objectInput.readLong();
 
 		cpDefinitionId = objectInput.readLong();
+		title = objectInput.readUTF();
 	}
 
 	@Override
@@ -190,6 +200,13 @@ public class CarGarageProductCacheModel
 		objectOutput.writeLong(carGarageId);
 
 		objectOutput.writeLong(cpDefinitionId);
+
+		if (title == null) {
+			objectOutput.writeUTF("");
+		}
+		else {
+			objectOutput.writeUTF(title);
+		}
 	}
 
 	public String uuid;
@@ -202,5 +219,6 @@ public class CarGarageProductCacheModel
 	public long modifiedDate;
 	public long carGarageId;
 	public long cpDefinitionId;
+	public String title;
 
 }

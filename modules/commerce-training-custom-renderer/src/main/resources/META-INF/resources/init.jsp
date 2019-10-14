@@ -50,12 +50,16 @@ page import="com.liferay.portal.kernel.util.PortalUtil" %>
 
 <%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState"%>
 
-
-
+<%@ page import="commerce.training.car.garage.model.CarGarage" %>
+<%@ page import="commerce.training.car.garage.model.CarGarageProduct" %>
+<%@ page import="com.liferay.commerce.product.catalog.CPMedia" %>
 
 <%@ page import="java.util.HashMap" %><%@
 page import="java.util.List" %><%@
 page import="java.util.Map" %>
+
+<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+
 <liferay-frontend:defineObjects />
 
 <liferay-theme:defineObjects />

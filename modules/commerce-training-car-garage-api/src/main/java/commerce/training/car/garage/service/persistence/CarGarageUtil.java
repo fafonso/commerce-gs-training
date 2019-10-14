@@ -543,10 +543,10 @@ public class CarGarageUtil {
 	 * @return the matching car garage
 	 * @throws NoSuchCarGarageException if a matching car garage could not be found
 	 */
-	public static CarGarage findByCpDefinitionId(long cpDefinitionId)
+	public static CarGarage findByCPDefinitionId(long cpDefinitionId)
 		throws commerce.training.car.garage.exception.NoSuchCarGarageException {
 
-		return getPersistence().findByCpDefinitionId(cpDefinitionId);
+		return getPersistence().findByCPDefinitionId(cpDefinitionId);
 	}
 
 	/**
@@ -555,8 +555,8 @@ public class CarGarageUtil {
 	 * @param cpDefinitionId the cp definition ID
 	 * @return the matching car garage, or <code>null</code> if a matching car garage could not be found
 	 */
-	public static CarGarage fetchByCpDefinitionId(long cpDefinitionId) {
-		return getPersistence().fetchByCpDefinitionId(cpDefinitionId);
+	public static CarGarage fetchByCPDefinitionId(long cpDefinitionId) {
+		return getPersistence().fetchByCPDefinitionId(cpDefinitionId);
 	}
 
 	/**
@@ -566,10 +566,10 @@ public class CarGarageUtil {
 	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the matching car garage, or <code>null</code> if a matching car garage could not be found
 	 */
-	public static CarGarage fetchByCpDefinitionId(
+	public static CarGarage fetchByCPDefinitionId(
 		long cpDefinitionId, boolean retrieveFromCache) {
 
-		return getPersistence().fetchByCpDefinitionId(
+		return getPersistence().fetchByCPDefinitionId(
 			cpDefinitionId, retrieveFromCache);
 	}
 
@@ -579,10 +579,10 @@ public class CarGarageUtil {
 	 * @param cpDefinitionId the cp definition ID
 	 * @return the car garage that was removed
 	 */
-	public static CarGarage removeByCpDefinitionId(long cpDefinitionId)
+	public static CarGarage removeByCPDefinitionId(long cpDefinitionId)
 		throws commerce.training.car.garage.exception.NoSuchCarGarageException {
 
-		return getPersistence().removeByCpDefinitionId(cpDefinitionId);
+		return getPersistence().removeByCPDefinitionId(cpDefinitionId);
 	}
 
 	/**
@@ -591,8 +591,8 @@ public class CarGarageUtil {
 	 * @param cpDefinitionId the cp definition ID
 	 * @return the number of matching car garages
 	 */
-	public static int countByCpDefinitionId(long cpDefinitionId) {
-		return getPersistence().countByCpDefinitionId(cpDefinitionId);
+	public static int countByCPDefinitionId(long cpDefinitionId) {
+		return getPersistence().countByCPDefinitionId(cpDefinitionId);
 	}
 
 	/**
