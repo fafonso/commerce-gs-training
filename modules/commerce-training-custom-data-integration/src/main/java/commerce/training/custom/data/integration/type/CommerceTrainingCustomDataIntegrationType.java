@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 	)
 public class CommerceTrainingCustomDataIntegrationType implements ProcessType {
 
-	public static final String KEY = "TRAINING";
+	public static final String KEY = "Garage Service CSV";
 
 	@Override
 	public String getKey() {
