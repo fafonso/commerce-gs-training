@@ -31,8 +31,7 @@ public class CustomCommerceCheckoutStep implements CommerceCheckoutStep {
 
 	@Override
 	public String getLabel(Locale locale) {
-		Calendar a = CalendarFactoryUtil.getCalendar();
-		System.out.println(a.YEAR);
+
 		return NAME;
 	}
 
@@ -42,6 +41,9 @@ public class CustomCommerceCheckoutStep implements CommerceCheckoutStep {
 		return NAME;
 	}
 
+	/**
+	 * Set active is order has a Vehicle Service order item.
+	 */
 	@Override
 	public boolean isActive(
 		HttpServletRequest httpServletRequest,
@@ -92,6 +94,9 @@ public class CustomCommerceCheckoutStep implements CommerceCheckoutStep {
 
 	}
 
+	/**
+	 * Jsp to be rendered in checkout step.
+	 */
 	@Override
 	public void render(
 		HttpServletRequest httpServletRequest,
