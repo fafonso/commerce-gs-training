@@ -1,3 +1,4 @@
+
 package com.liferay.commerce.training.shipping.engine;
 
 import com.liferay.commerce.context.CommerceContext;
@@ -30,29 +31,43 @@ import java.util.ResourceBundle;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(
-	immediate = true,
-	property = "commerce.shipping.engine.key=" + CommerceTrainingShippingEngine.KEY,
-	service = CommerceShippingEngine.class
-)
+/**
+ * It is important to provide a distinct key for the shipping engine so that
+ * Liferay Commerce can distinguish the new engine from others in the shipping
+ * engine registry. Reusing a key that is already in use will override the
+ * existing associated engine.
+ */
+@Component(immediate = true, property = "commerce.shipping.engine.key=" +
+	CommerceTrainingShippingEngine.KEY, service = CommerceShippingEngine.class)
 public class CommerceTrainingShippingEngine implements CommerceShippingEngine {
 
 	public static final double DISCOUNT_RATE = 0.75;
 
 	public static final String KEY = "Example";
 
+	/**
+	 * This method returns a text label used for shipping options. See the
+	 * implementation in CommerceTrainingShippingEngine.java for a reference in
+	 * retrieving the description with a language key.
+	 */
 	@Override
 	public String getCommerceShippingOptionLabel(String name, Locale locale) {
+
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			"content.Language", locale, getClass());
 
 		return LanguageUtil.get(resourceBundle, name);
 	}
 
+	/**
+	 * This will be where we add the business logic for our custom shipping
+	 * engine. It must fetch a list of available options, then perform the
+	 * processing necessary to present them to the customer.
+	 */
 	@Override
 	public List<CommerceShippingOption> getCommerceShippingOptions(
-			CommerceContext commerceContext, CommerceOrder commerceOrder,
-			Locale locale)
+		CommerceContext commerceContext, CommerceOrder commerceOrder,
+		Locale locale)
 		throws CommerceShippingEngineException {
 
 		List<CommerceShippingOption> commerceShippingOptions =
@@ -73,6 +88,7 @@ public class CommerceTrainingShippingEngine implements CommerceShippingEngine {
 
 	@Override
 	public String getDescription(Locale locale) {
+
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			"content.Language", locale, getClass());
 
@@ -81,6 +97,7 @@ public class CommerceTrainingShippingEngine implements CommerceShippingEngine {
 
 	@Override
 	public String getName(Locale locale) {
+
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			"content.Language", locale, getClass());
 
@@ -98,14 +115,13 @@ public class CommerceTrainingShippingEngine implements CommerceShippingEngine {
 			return Collections.emptyList();
 		}
 
-		return _commerceShippingFixedOptionLocalService.
-			getCommerceShippingFixedOptions(
-				commerceShippingMethod.getCommerceShippingMethodId(),
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+		return _commerceShippingFixedOptionLocalService.getCommerceShippingFixedOptions(
+			commerceShippingMethod.getCommerceShippingMethodId(),
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 	}
 
 	private List<CommerceShippingOption> _getCommerceShippingOptions(
-			long groupId, CommerceOrder commerceOrder, Locale locale)
+		long groupId, CommerceOrder commerceOrder, Locale locale)
 		throws PortalException {
 
 		List<CommerceShippingOption> commerceShippingOptions =
@@ -114,11 +130,10 @@ public class CommerceTrainingShippingEngine implements CommerceShippingEngine {
 		List<CommerceShippingFixedOption> commerceShippingFixedOptions =
 			_getCommerceShippingFixedOptions(groupId);
 
-		for (CommerceShippingFixedOption commerceShippingFixedOption :
-				commerceShippingFixedOptions) {
+		for (CommerceShippingFixedOption commerceShippingFixedOption : commerceShippingFixedOptions) {
 
 			if (_shippingOptionIsAddressRestricted(
-					commerceOrder, commerceShippingFixedOption)) {
+				commerceOrder, commerceShippingFixedOption)) {
 
 				continue;
 			}
@@ -142,34 +157,30 @@ public class CommerceTrainingShippingEngine implements CommerceShippingEngine {
 	}
 
 	private boolean _shippingOptionIsAddressRestricted(
-			CommerceOrder commerceOrder,
-			CommerceShippingFixedOption commerceShippingFixedOption)
+		CommerceOrder commerceOrder,
+		CommerceShippingFixedOption commerceShippingFixedOption)
 		throws PortalException {
 
 		CommerceAddress commerceAddress = commerceOrder.getShippingAddress();
 
-		return _commerceAddressRestrictionLocalService.
-			isCommerceShippingMethodRestricted(
-				commerceShippingFixedOption.getCommerceShippingMethodId(),
-				commerceAddress.getCommerceCountryId());
+		return _commerceAddressRestrictionLocalService.isCommerceShippingMethodRestricted(
+			commerceShippingFixedOption.getCommerceShippingMethodId(),
+			commerceAddress.getCommerceCountryId());
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		CommerceTrainingShippingEngine.class);
+	private static final Log _log =
+		LogFactoryUtil.getLog(CommerceTrainingShippingEngine.class);
 
 	@Reference
-	private CommerceAddressRestrictionLocalService
-		_commerceAddressRestrictionLocalService;
+	private CommerceAddressRestrictionLocalService _commerceAddressRestrictionLocalService;
 
 	@Reference
-	private CommerceShippingFixedOptionLocalService
-		_commerceShippingFixedOptionLocalService;
+	private CommerceShippingFixedOptionLocalService _commerceShippingFixedOptionLocalService;
 
 	@Reference
 	private CommerceShippingHelper _commerceShippingHelper;
 
 	@Reference
-	private CommerceShippingMethodLocalService
-		_commerceShippingMethodLocalService;
+	private CommerceShippingMethodLocalService _commerceShippingMethodLocalService;
 
 }

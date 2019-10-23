@@ -70,6 +70,11 @@ public class VehicleServiceScreenNavigationEntry
 		return "cp.definition.general";
 	}
 
+	/**
+	 * Implement logic here to determine when to show the custom screen. In our
+	 * example, we only check whether the product type from the CPDefinition
+	 * matches our example product type.
+	 */
 	@Override
 	public boolean isVisible(User user, CPDefinition context) {
 
@@ -86,6 +91,10 @@ public class VehicleServiceScreenNavigationEntry
 		return false;
 	}
 
+	/**
+	 * This is where we add the code to render a customized screen for our
+	 * product type.
+	 */
 	@Override
 	public void render(
 		HttpServletRequest httpServletRequest,
@@ -118,6 +127,14 @@ public class VehicleServiceScreenNavigationEntry
 	@Reference
 	private JSPRenderer _jspRenderer;
 
+	/**
+	 * The value we set for osgi.web.symbolicname matches the value for
+	 * Bundle-SymbolicName in our bnd.bnd file. These values must match for the
+	 * ServletContext to locate the JSP. We declare a unique value for
+	 * Web-ContextPath in our bnd.bnd file so the ServletContext is correctly
+	 * generated. In our example, Web-ContextPath is set to /c1n4-web. See
+	 * bnd.bnd for a reference on these values.
+	 */
 	@Reference(target = "(osgi.web.symbolicname=commerce.training.product.type)")
 	private ServletContext _servletContext;
 

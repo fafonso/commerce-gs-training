@@ -18,6 +18,16 @@ import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 
+/**
+ * It is important to provide a distinct key for the discount rule type so that
+ * Liferay Commerce can distinguish the new type from others in the discount
+ * rule type registry. Reusing a key that is already in use will override the
+ * existing associated type. The commerce.discount.rule.type.order value
+ * indicates how far in the list of available discount rule types this type will
+ * appear. For example, the "added all" discount rule type has a value of 50.
+ * Giving our discount rule type a value of 51 ensures that it will appear
+ * immediately after the "added all" type.
+ */
 @Component(immediate = true, property = {
 	"commerce.discount.rule.type.key=" + CommerceTrainingDiscountRuleType.KEY,
 	"commerce.discount.rule.type.order:Integer=51"
@@ -27,6 +37,10 @@ public class CommerceTrainingDiscountRuleType
 
 	public static final String KEY = "Example";
 
+	/**
+	 * This method will be where we implement the business logic for evaluating
+	 * when the discount rule is applied.
+	 */
 	@Override
 	public boolean evaluate(
 		CommerceDiscountRule commerceDiscountRule,
@@ -58,12 +72,22 @@ public class CommerceTrainingDiscountRuleType
 
 	}
 
+	/**
+	 * This provides a unique identifier for the discount rule type in the
+	 * discount rule type registry. The key can be used to fetch the new type
+	 * from the registry.
+	 */
 	@Override
 	public String getKey() {
 
 		return KEY;
 	}
 
+	/**
+	 * This returns a text label that describes how the discount rule is
+	 * applied. See the implementation in CommerceTrainingDiscountRuleType.java for
+	 * a reference in retrieving the label with a language key.
+	 */
 	@Override
 	public String getLabel(Locale locale) {
 
