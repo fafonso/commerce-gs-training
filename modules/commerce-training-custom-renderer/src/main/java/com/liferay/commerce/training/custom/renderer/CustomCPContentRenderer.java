@@ -58,6 +58,11 @@ public class CustomCPContentRenderer implements CPContentRenderer {
 		return KEY;
 	}
 
+	/**
+	 * This returns a text label that describes the product content renderer.
+	 * See the implementation in CustomCPContentRenderer.java for a reference in
+	 * retrieving the label with a language key.
+	 */
 	@Override
 	public String getLabel(Locale locale) {
 
@@ -67,11 +72,6 @@ public class CustomCPContentRenderer implements CPContentRenderer {
 		return LanguageUtil.get(resourceBundle, "vehicle-service");
 	}
 
-	/**
-	 * This returns a text label that describes the product content renderer.
-	 * See the implementation in CustomCPContentRenderer.java for a reference in
-	 * retrieving the label with a language key.
-	 */
 	@Override
 	public void render(
 		CPCatalogEntry cpCatalogEntry, HttpServletRequest httpServletRequest,
