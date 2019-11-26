@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<beans
+	default-destroy-method="destroy"
+	default-init-method="afterPropertiesSet"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+>
+	<bean class="commerce.training.car.garage.service.impl.CarGarageLocalServiceImpl" id="commerce.training.car.garage.service.CarGarageLocalService" />
+	<bean class="commerce.training.car.garage.service.persistence.impl.CarGaragePersistenceImpl" id="commerce.training.car.garage.service.persistence.CarGaragePersistence" parent="basePersistence" />
+	<bean class="commerce.training.car.garage.service.impl.CarGarageProductLocalServiceImpl" id="commerce.training.car.garage.service.CarGarageProductLocalService" />
+	<bean class="commerce.training.car.garage.service.persistence.impl.CarGarageProductPersistenceImpl" id="commerce.training.car.garage.service.persistence.CarGarageProductPersistence" parent="basePersistence" />
+</beans>

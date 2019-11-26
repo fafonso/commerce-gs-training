@@ -1,0 +1,4 @@
+Bundle-Name: commerce-training-discount-rule-type
+Bundle-SymbolicName: com.liferay.commerce.training.discount.rule.type
+Bundle-Version: 1.0.0
+Web-ContextPath: /m6a8-web
