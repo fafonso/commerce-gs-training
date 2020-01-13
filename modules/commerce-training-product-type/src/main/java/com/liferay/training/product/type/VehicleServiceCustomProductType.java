@@ -19,7 +19,6 @@ import org.osgi.service.component.annotations.Component;
  * virtual product type has a value of 15. Giving our product type a value of 16
  * ensures that it will appear immediately after the virtual type.
  */
-
 @Component(immediate = true, property = {
 	"commerce.product.type.display.order:Integer=15",
 	"commerce.product.type.name=" + VehicleServiceCustomProductType.NAME
@@ -36,8 +35,8 @@ public class VehicleServiceCustomProductType implements CPType {
 
 	/**
 	 * This returns a text label that describes the product type. See the
-	 * implementation in VehicleServiceCustomProductType.java for a reference in retrieving the label
-	 * with a language key.
+	 * implementation in VehicleServiceCustomProductType.java for a reference in
+	 * retrieving the label with a language key.
 	 */
 	@Override
 	public String getLabel(Locale locale) {
