@@ -1,28 +1,16 @@
-buildscript {
-	dependencies {
-		classpath group: "nu.studer",   name: "gradle-credentials-plugin", version: "1.0.7"
-	}
+dependencies {
+	targetPlatformBoms group: "com.liferay", name: "workspace-bom", version: "1.0.0"
+}
+
+allprojects {
 
 	repositories {
-		jcenter()
-	}
-}
-
-subprojects {
-
-    repositories {
 		maven {
-			url "https://repository-cdn.liferay.com/nexus/content/repositories/liferay-private-releases/"
-			credentials {
-		        username "$liferayUser"
-		        password "$liferayPassword"
-		    }
-		    authentication {
-	            digest(BasicAuthentication)
-	        }
+			url rootProject.file("repo").toURI()
 		}
-    }
-    
-	apply plugin: "nu.studer.credentials"
+	}
+
 }
+
+
 
