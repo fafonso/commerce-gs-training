@@ -21,6 +21,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
+/**
+ * The checkout step name must be a unique value so that Liferay Commerce can
+ * distinguish our checkout step from existing checkout steps. The
+ * commerce.checkout.step.order value indicates how far into the checkout
+ * process the checkout step will appear. For example, the shipping method
+ * checkout step has a value of 20. Giving our checkout step a value of 21
+ * ensures that it will appear immediately after the shipping method step.
+ */
 @Component(immediate = true, property = {
 	"commerce.checkout.step.name=" + CustomCommerceCheckoutStep.NAME,
 	"commerce.checkout.step.order:Integer=" + (Integer.MAX_VALUE - 151)
@@ -31,8 +39,7 @@ public class CustomCommerceCheckoutStep implements CommerceCheckoutStep {
 
 	@Override
 	public String getLabel(Locale locale) {
-		Calendar a = CalendarFactoryUtil.getCalendar();
-		System.out.println(a.YEAR);
+
 		return NAME;
 	}
 
@@ -42,6 +49,9 @@ public class CustomCommerceCheckoutStep implements CommerceCheckoutStep {
 		return NAME;
 	}
 
+	/**
+	 * Set active is order has a Vehicle Service order item.
+	 */
 	@Override
 	public boolean isActive(
 		HttpServletRequest httpServletRequest,
@@ -92,6 +102,9 @@ public class CustomCommerceCheckoutStep implements CommerceCheckoutStep {
 
 	}
 
+	/**
+	 * Use a JSPRenderer to render the JSP for our checkout step.
+	 */
 	@Override
 	public void render(
 		HttpServletRequest httpServletRequest,

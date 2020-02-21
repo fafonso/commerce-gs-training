@@ -395,7 +395,7 @@ List<CPMedia> cpAttachmentFileEntries = cpContentHelper.getCPAttachmentFileEntri
 
 
 <script type="text/javascript"
- src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyB-MiT_WlcwrjKMfB_vx_t77SiZqYfHMGk"></script>
+ src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&key=AIzaSyBSrGrMBlyE6ScQOGxHTFStUVDCqYYVNw0"></script>
  
 </script>
 <script type="text/javascript">

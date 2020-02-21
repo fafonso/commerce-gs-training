@@ -12,7 +12,7 @@
 		vehicleServiceDisplayContext.getCPDefinitions();
 %>
 
-<portlet:actionURL name="<%=VehicleServiceConstants.VEHICLE_SERVICE_EDIT_ACTION %>" var="editVehicleServiceURL" />
+<portlet:actionURL name="editVehicleService" var="editVehicleServiceURL" />
 
 <aui:form action="<%=editVehicleServiceURL%>" name="addCarGarageFm">
 

@@ -50,14 +50,13 @@ public class VehicleServiceDisplayContext
 		return _carGarageProductLocalService;
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public PortletURL getPortletURL()
 		throws PortalException {
 
 		PortletURL portletURL = super.getPortletURL();
 
-		portletURL.setParameter("mvcRenderCommandName", VehicleServiceConstants.VEHICLE_SERVICE_EDIT_ACTION);
+		portletURL.setParameter("mvcRenderCommandName", "editVehicleService");
 		portletURL.setParameter(
 			"screenNavigationCategoryKey", getScreenNavigationCategoryKey());
 
@@ -67,7 +66,7 @@ public class VehicleServiceDisplayContext
 	@Override
 	public String getScreenNavigationCategoryKey() {
 
-		return VehicleServiceConstants.VEHICLE_SERVICE_PRODUCT_KEY;
+		return "vehicle-service";
 	}
 
 	public CarGarage fetchCarGarageByCPDefinitionId()
@@ -127,7 +126,7 @@ public class VehicleServiceDisplayContext
 				WebKeys.THEME_DISPLAY);
 
 		return _cpDefinitionLocalService.getCPDefinitions(
-			getCPDefinition().getGroupId(), VehicleServiceConstants.VEHICLE_SERVICE_PRODUCT_KEY,
+			getCPDefinition().getGroupId(), "simple",
 			themeDisplay.getLanguageId(), 0, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 

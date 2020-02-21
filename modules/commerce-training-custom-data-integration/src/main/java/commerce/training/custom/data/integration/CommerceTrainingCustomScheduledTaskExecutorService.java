@@ -43,6 +43,9 @@ public class CommerceTrainingCustomScheduledTaskExecutorService
 
 	}
 
+	/**
+	 * This process is run by Data Integration Admin
+	 */
 	@Override
 	public void runProcess(long commerceDataIntegrationProcessId)
 		throws IOException, PortalException {
@@ -89,6 +92,12 @@ public class CommerceTrainingCustomScheduledTaskExecutorService
 
 	}
 
+	/**
+	 * Export csv for car garage orders.
+	 * 
+	 * @param carGarageOrders
+	 * @param carGarageTitles
+	 */
 	protected void exportCSVData(
 		List<CommerceOrder> carGarageOrders, List<String> carGarageTitles) {
 

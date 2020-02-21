@@ -1,6 +1,14 @@
 
 package com.liferay.commerce.training.order.validator;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Set;
+
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+
 import com.liferay.commerce.model.CommerceOrder;
 import com.liferay.commerce.model.CommerceOrderItem;
 import com.liferay.commerce.order.CommerceOrderValidator;
@@ -10,19 +18,21 @@ import com.liferay.commerce.product.model.CPInstance;
 import com.liferay.commerce.training.order.validator.constants.CustomOrderValidatorConstants;
 import com.liferay.portal.kernel.exception.PortalException;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
-
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-
 import commerce.training.car.garage.model.CarGarage;
 import commerce.training.car.garage.model.CarGarageProduct;
 import commerce.training.car.garage.service.CarGarageLocalService;
 import commerce.training.car.garage.service.CarGarageProductLocalService;
 
+/**
+ * It is important to provide a distinct key for the order validator so that
+ * Liferay Commerce can distinguish the new order validator from others in the
+ * order validator registry. Reusing a key that is already in use will override
+ * the existing associated validator. The commerce.order.validator.priority
+ * value indicates when the order validator will perform its validation in
+ * sequence with other validators. For example, the default order validator has
+ * a value of 10. Giving our order validator a value of 9 ensures that it will
+ * perform its validation immediately before the default validator.
+ */
 @Component(immediate = true, property = {
 	"commerce.order.validator.key=" +
 		CustomOrderValidatorConstants.CUSTOMORDERVALIDATORKEY,
@@ -31,12 +41,25 @@ import commerce.training.car.garage.service.CarGarageProductLocalService;
 
 public class CustomOrderValidator implements CommerceOrderValidator {
 
+	/**
+	 * This method provides a unique identifier for the order validator in the
+	 * order validator registry. The key can be used to fetch the validator from
+	 * the registry. Reusing a key that is already in use will override the
+	 * existing associated validator.
+	 */
 	@Override
 	public String getKey() {
 
 		return CustomOrderValidatorConstants.CUSTOMORDERVALIDATORKEY;
 	}
 
+	/**
+	 * This is one of the two validation methods where we will add our custom
+	 * validation logic. This method is called whenever a customer adds an item
+	 * to their cart. It does this by returning a CommerceOrderValidatorResult,
+	 * which uses a boolean to signal whether or not the result passes
+	 * validation; see CommerceOrderValidatorResult.java.
+	 */
 	@Override
 	public CommerceOrderValidatorResult validate(
 		Locale locale, CommerceOrder commerceOrder, CPInstance cpInstance,
@@ -140,7 +163,10 @@ public class CustomOrderValidator implements CommerceOrderValidator {
 		return new CommerceOrderValidatorResult(true);
 
 	}
-
+	
+	/**
+	 * Validate order item
+	 */
 	@Override
 	public CommerceOrderValidatorResult validate(
 		Locale locale, CommerceOrderItem commerceOrderItem)

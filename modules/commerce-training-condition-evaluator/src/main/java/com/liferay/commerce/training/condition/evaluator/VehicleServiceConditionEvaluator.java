@@ -24,6 +24,9 @@ import org.osgi.service.component.annotations.Reference;
 )
 public class VehicleServiceConditionEvaluator implements ConditionEvaluator {
 
+	/**
+	 * Evaluate condition node.
+	 */
 	@Override
 	public String evaluate(
 		KaleoCondition kaleoCondition, ExecutionContext executionContext)
@@ -32,7 +35,9 @@ public class VehicleServiceConditionEvaluator implements ConditionEvaluator {
 		KaleoInstanceToken kaleoInstanceToken =
 			executionContext.getKaleoInstanceToken();
 
-		_log.debug("***In the java condition evaluator.***");
+		if (_log.isDebugEnabled()) {
+			_log.debug("***In the java condition evaluator.***");
+		}
 
 		KaleoInstance kaleoInstance =
 			_kaleoInstanceLocalService.getKaleoInstance(
@@ -55,11 +60,15 @@ public class VehicleServiceConditionEvaluator implements ConditionEvaluator {
 		}
 
 		if (isVehicleServiceOrder) {
-			_log.debug("Vehicle Service Product Type");
+			if (_log.isDebugEnabled()) {
+				_log.debug("Vehicle Service Product Type");
+			}
 			return "true";
 		}
 		else {
-			_log.debug("Not Vehicle Service Product Type");
+			if (_log.isDebugEnabled()) {
+				_log.debug("Not Vehicle Service Product Type");
+			}
 			return "false";
 		}
 

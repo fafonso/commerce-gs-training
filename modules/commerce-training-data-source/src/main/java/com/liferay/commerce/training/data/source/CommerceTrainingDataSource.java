@@ -1,3 +1,4 @@
+
 package com.liferay.commerce.training.data.source;
 
 import com.liferay.commerce.product.catalog.CPCatalogEntry;
@@ -29,17 +30,25 @@ import javax.servlet.http.HttpServletRequest;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(
-	immediate = true,
-	property = "commerce.product.data.source.name=" + CommerceTrainingDataSource.NAME,
-	service = CPDataSource.class
-)
+@Component(immediate = true, property = "commerce.product.data.source.name=" +
+	CommerceTrainingDataSource.NAME, service = CPDataSource.class)
 public class CommerceTrainingDataSource implements CPDataSource {
 
+	/**
+	 * The product data source name must be a unique value so that Liferay
+	 * Commerce can distinguish the new datafrom existing data sources.
+	 */
 	public static final String NAME = "Example";
 
+	/*
+	 * This method returns a text label that describes how product data source
+	 * will search for related products. See the implementation in
+	 * CommerceTrainingDataSource.java for a reference in retrieving the label
+	 * with a language key.
+	 */
 	@Override
 	public String getLabel(Locale locale) {
+
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			"content.Language", locale, getClass());
 
@@ -49,16 +58,24 @@ public class CommerceTrainingDataSource implements CPDataSource {
 
 	@Override
 	public String getName() {
+
 		return NAME;
 	}
 
+	/**
+	 * This will be where we add the business logic to perform the search for
+	 * related products. The HttpServletRequest contains a reference to a
+	 * particular product which the results should be related to in some way.
+	 * The method will return a CPDataSourceResult, which contains a list of the
+	 * search results; see the implementation at CPDataSourceResult.java.
+	 */
 	@Override
 	public CPDataSourceResult getResult(
-			HttpServletRequest httpServletRequest, int start, int end)
+		HttpServletRequest httpServletRequest, int start, int end)
 		throws Exception {
 
 		CPCatalogEntry cpCatalogEntry =
-			(CPCatalogEntry)httpServletRequest.getAttribute(
+			(CPCatalogEntry) httpServletRequest.getAttribute(
 				CPWebKeys.CP_CATALOG_ENTRY);
 
 		if (cpCatalogEntry == null) {
@@ -85,6 +102,12 @@ public class CommerceTrainingDataSource implements CPDataSource {
 			new CPQuery(), start, end);
 	}
 
+	/**
+	 * Returns the last name of the cpCatalogEntry
+	 * @param cpCatalogEntry
+	 * @return
+	 * @throws Exception
+	 */
 	private String _getLastWordOfName(CPCatalogEntry cpCatalogEntry)
 		throws Exception {
 
