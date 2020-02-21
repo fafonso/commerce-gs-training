@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<workflow-definition
+	xmlns="urn:liferay.com:liferay-workflow_7.1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:liferay.com:liferay-workflow_7.1.0 http://www.liferay.com/dtd/liferay-workflow-definition_7_1_0.xsd">
+	<version>1</version>
+	<condition>
+		<name>Check Order Total Price</name>
+		<metadata>
+			<![CDATA[{"xy":[274,115]}]]>
+		</metadata>
+		<script>
+			<![CDATA[import com.liferay.portal.workflow.kaleo.model.*;
+import com.liferay.portal.workflow.kaleo.service.*;
+import com.liferay.commerce.model.CommerceOrder;
+import com.liferay.commerce.service.CommerceOrderLocalServiceUtil;
+
+KaleoInstance kaleoInstance = KaleoInstanceLocalServiceUtil.getKaleoInstance(kaleoInstanceToken.getKaleoInstanceId());
+
+CommerceOrder order = CommerceOrderLocalServiceUtil.getCommerceOrder(kaleoInstance.getClassPK());
+
+if(order.getSubtotal().intValue() >= 500){
+    returnValue = "over";
+} else {
+    returnValue = "under";
+}]]>
+		</script>
+		<script-language>groovy</script-language>
+		<transitions>
+			<transition>
+				<name>under</name>
+				<target>Accepted</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<name>over</name>
+				<target>Review Order</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</condition>
+	<state>
+		<name>StartNode</name>
+		<metadata>
+			<![CDATA[{"xy":[100,40]}]]>
+		</metadata>
+		<initial>true</initial>
+		<transitions>
+			<transition>
+				<name>connector36988</name>
+				<target>Check Order Total Price</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>Accepted</name>
+		<metadata>
+			<![CDATA[{"terminal":true,"xy":[100,500]}]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>Approve</name>
+				<description>Approve</description>
+				<script>
+					<![CDATA[com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil.updateStatus(com.liferay.portal.kernel.workflow.WorkflowConstants.getLabelStatus("approved"), workflowContext);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+	</state>
+	<state>
+		<name>Rejected</name>
+		<metadata>
+			<![CDATA[{"terminal":true,"xy":[610,470]}]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>Rejected</name>
+				<description>Rejected</description>
+				<script>
+					<![CDATA[com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil.updateStatus(com.liferay.portal.kernel.workflow.WorkflowConstants.getLabelStatus("approved"), workflowContext);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+	</state>
+	<task>
+		<name>Review Order</name>
+		<metadata>
+			<![CDATA[{"xy":[430,298]}]]>
+		</metadata>
+		<actions>
+			<notification>
+				<name>Order for Review</name>
+				<description>
+					<![CDATA[Order for Review]]>
+				</description>
+				<template>
+					<![CDATA[Order for Review]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>user-notification</notification-type>
+				<recipients receptionType="to">
+					<assignees/>
+				</recipients>
+				<execution-type>onAssignment</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>regular</role-type>
+					<name>Administrator</name>
+					<auto-create>false</auto-create>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>Approve Order</name>
+				<target>Accepted</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<name>Reject Order</name>
+				<target>Rejected</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</task>
+</workflow-definition>
