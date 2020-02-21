@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+<workflow-definition
+	xmlns="urn:liferay.com:liferay-workflow_7.1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:liferay.com:liferay-workflow_7.1.0 http://www.liferay.com/dtd/liferay-workflow-definition_7_1_0.xsd">
+	<version>1</version>
+	<condition>
+		<name>Vehicle Service Condition Evaluator</name>
+		<metadata>
+			<![CDATA[{"xy":[194,191]}]]>
+		</metadata>
+		<script>
+			<![CDATA[com.liferay.commerce.training.condition.evaluator.VehicleServiceConditionEvaluator]]>
+		</script>
+		<script-language>java</script-language>
+		<transitions>
+			<transition>
+				<name>false</name>
+				<target>EndNode</target>
+				<default>false</default>
+			</transition>
+			<transition>
+				<name>true</name>
+				<target>review</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</condition>
+	<state>
+		<name>StartNode</name>
+		<metadata>
+			<![CDATA[{"xy":[86,25]}]]>
+		</metadata>
+		<initial>true</initial>
+		<transitions>
+			<transition>
+				<name>connector63584</name>
+				<target>Vehicle Service Condition Evaluator</target>
+				<default>true</default>
+			</transition>
+		</transitions>
+	</state>
+	<state>
+		<name>EndNode</name>
+		<metadata>
+			<![CDATA[{"terminal":true,"xy":[448,473]}]]>
+		</metadata>
+		<actions>
+			<action>
+				<name>Approve</name>
+				<description>Approve</description>
+				<script>
+					<![CDATA[com.liferay.portal.kernel.workflow.WorkflowStatusManagerUtil.updateStatus(com.liferay.portal.kernel.workflow.WorkflowConstants.getLabelStatus("approved"), workflowContext);]]>
+				</script>
+				<script-language>groovy</script-language>
+				<execution-type>onEntry</execution-type>
+			</action>
+		</actions>
+	</state>
+	<state>
+		<name>state52028</name>
+		<metadata>
+			<![CDATA[{"xy":[717,457]}]]>
+		</metadata>
+	</state>
+	<task>
+		<name>review</name>
+		<metadata>
+			<![CDATA[{"xy":[727,223]}]]>
+		</metadata>
+		<actions>
+			<notification>
+				<name>Review Notification</name>
+				<description>
+					<![CDATA[]]>
+				</description>
+				<template>
+					<![CDATA[${userName} sent you a ${entryType} for review in the workflow.]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>user-notification</notification-type>
+				<recipients receptionType="to">
+					<roles>
+						<role>
+							<role-id>20105</role-id>
+						</role>
+					</roles>
+				</recipients>
+				<execution-type>onAssignment</execution-type>
+			</notification>
+			<notification>
+				<name>Review Completion Notification</name>
+				<description>
+					<![CDATA[]]>
+				</description>
+				<template>
+					<![CDATA[Your submission was reviewed
+					
+					
+					
+					
+					
+					
+					<#if taskComments?has_content> and the reviewer applied the following ${taskComments}</#if>.]]>
+				</template>
+				<template-language>freemarker</template-language>
+				<notification-type>user-notification</notification-type>
+				<recipients receptionType="to">
+					<user/>
+				</recipients>
+				<execution-type>onExit</execution-type>
+			</notification>
+		</actions>
+		<assignments>
+			<roles>
+				<role>
+					<role-type>organization</role-type>
+					<name>Organization Administrator</name>
+					<auto-create>false</auto-create>
+				</role>
+				<role>
+					<role-type>organization</role-type>
+					<name>Organization Content Reviewer</name>
+					<auto-create>false</auto-create>
+				</role>
+				<role>
+					<role-type>organization</role-type>
+					<name>Organization Owner</name>
+					<auto-create>false</auto-create>
+				</role>
+				<role>
+					<role-type>regular</role-type>
+					<name>Administrator</name>
+					<auto-create>false</auto-create>
+				</role>
+				<role>
+					<role-type>regular</role-type>
+					<name>Portal Content Reviewer</name>
+					<auto-create>false</auto-create>
+				</role>
+				<role>
+					<role-type>site</role-type>
+					<name>Site Administrator</name>
+					<auto-create>false</auto-create>
+				</role>
+				<role>
+					<role-type>site</role-type>
+					<name>Site Content Reviewer</name>
+					<auto-create>false</auto-create>
+				</role>
+				<role>
+					<role-type>site</role-type>
+					<name>Site Owner</name>
+					<auto-create>false</auto-create>
+				</role>
+			</roles>
+		</assignments>
+		<transitions>
+			<transition>
+				<name>Approve Service</name>
+				<target>EndNode</target>
+				<default>true</default>
+			</transition>
+			<transition>
+				<name>Reject Service</name>
+				<target>state52028</target>
+				<default>false</default>
+			</transition>
+		</transitions>
+	</task>
+</workflow-definition>
