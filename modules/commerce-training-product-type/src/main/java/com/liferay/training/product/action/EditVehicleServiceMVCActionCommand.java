@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.training.product.display.context.VehicleServiceConstants;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -40,7 +41,7 @@ import commerce.training.car.garage.service.CarGarageProductLocalService;
  */
 @Component(immediate = true, property = {
 	"javax.portlet.name=" + CPPortletKeys.CP_DEFINITIONS,
-	"mvc.command.name=editVehicleService"
+	"mvc.command.name=" + VehicleServiceConstants.VEHICLE_SERVICE_EDIT_ACTION
 }, service = MVCActionCommand.class)
 public class EditVehicleServiceMVCActionCommand extends BaseMVCActionCommand {
 

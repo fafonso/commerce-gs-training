@@ -35,6 +35,8 @@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 <%@ page import="com.liferay.commerce.product.constants.CPPortletKeys" %>
 <%@ page import="com.liferay.commerce.product.model.CPDefinition" %>
 
+<%@ page import="com.liferay.training.product.display.context.VehicleServiceConstants" %>
+
 <%@ page import="javax.portlet.PortletURL" %>
 
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
