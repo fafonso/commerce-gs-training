@@ -35,7 +35,7 @@ import org.osgi.service.component.annotations.Component;
 public class CommerceTrainingDiscountRuleType
 	implements CommerceDiscountRuleType {
 
-	public static final String KEY = "Example";
+	public static final String KEY = "Fitted By Garage";
 
 	/**
 	 * This method will be where we implement the business logic for evaluating

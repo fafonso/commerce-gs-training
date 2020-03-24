@@ -1,10 +1,26 @@
 
 package commerce.training.custom.data.integration;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+
+import com.liferay.commerce.data.integration.model.CommerceDataIntegrationProcess;
+import com.liferay.commerce.data.integration.model.CommerceDataIntegrationProcessLog;
+import com.liferay.commerce.data.integration.service.CommerceDataIntegrationProcessLocalService;
+import com.liferay.commerce.data.integration.service.CommerceDataIntegrationProcessLogLocalService;
 import com.liferay.commerce.data.integration.service.ScheduledTaskExecutorService;
 import com.liferay.commerce.model.CommerceOrder;
 import com.liferay.commerce.model.CommerceOrderItem;
 import com.liferay.commerce.service.CommerceOrderLocalService;
+import com.liferay.portal.kernel.backgroundtask.BackgroundTaskConstants;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
@@ -13,16 +29,7 @@ import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
+import com.liferay.portal.kernel.util.UnicodeProperties;
 
 import commerce.training.car.garage.service.CarGarageLocalService;
 import commerce.training.car.garage.service.CarGarageProductLocalService;
@@ -53,6 +60,27 @@ public class CommerceTrainingCustomScheduledTaskExecutorService
 		if (_log.isDebugEnabled()) {
 			_log.debug("runProcess");
 		}
+
+		String successMessage = "Export Successful";
+
+		CommerceDataIntegrationProcess commerceDataIntegrationProcess =
+			_commerceDataIntegrationProcessLocalService.getCommerceDataIntegrationProcess(
+				commerceDataIntegrationProcessId);
+
+		UnicodeProperties typeSettingsProperties =
+			commerceDataIntegrationProcess.getTypeSettingsProperties();
+
+		if (typeSettingsProperties.containsKey("extra-data")) {
+			successMessage += typeSettingsProperties.get("extra-data");
+		}
+
+		// the log that appears in the log tab of data integration.
+		CommerceDataIntegrationProcessLog commerceDataIntegrationProcessLog =
+			_commerceDataIntegrationProcessLogLocalService.addCommerceDataIntegrationProcessLog(
+				commerceDataIntegrationProcess.getUserId(),
+				commerceDataIntegrationProcess.getCommerceDataIntegrationProcessId(),
+				null, null, BackgroundTaskConstants.STATUS_IN_PROGRESS,
+				new Date(), null);
 
 		List<CommerceOrder> commerceOrders =
 			_commerceOrderLocalService.getCommerceOrders(
@@ -90,6 +118,11 @@ public class CommerceTrainingCustomScheduledTaskExecutorService
 
 		exportCSVData(carGarageOrders, carGarageTitles);
 
+		_commerceDataIntegrationProcessLogLocalService.updateCommerceDataIntegrationProcessLog(
+			commerceDataIntegrationProcessLog.getCommerceDataIntegrationProcessLogId(),
+			"", successMessage, BackgroundTaskConstants.STATUS_SUCCESSFUL,
+			new Date());
+
 	}
 
 	/**
@@ -102,7 +135,7 @@ public class CommerceTrainingCustomScheduledTaskExecutorService
 		List<CommerceOrder> carGarageOrders, List<String> carGarageTitles) {
 
 		StringBundler sb = new StringBundler();
-		
+
 		for (String columnName : columnNames) {
 			sb.append(getCSVFormattedValue(columnName));
 			sb.append(CSV_SEPARATOR);
@@ -118,7 +151,7 @@ public class CommerceTrainingCustomScheduledTaskExecutorService
 			if (_log.isDebugEnabled()) {
 				_log.debug(index);
 			}
-			
+
 			sb.append(
 				getCSVFormattedValue(
 					String.valueOf(carGarageOrder.getCommerceOrderId())));
@@ -144,7 +177,7 @@ public class CommerceTrainingCustomScheduledTaskExecutorService
 			sb.append(CharPool.NEW_LINE);
 		}
 
-		String fileName = "garage_service.csv";
+		String fileName = "../../work/garage_service.csv";
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(sb.toString());
@@ -183,6 +216,12 @@ public class CommerceTrainingCustomScheduledTaskExecutorService
 
 	@Reference
 	private CarGarageProductLocalService _carGarageProductLocalService;
+
+	@Reference
+	private CommerceDataIntegrationProcessLocalService _commerceDataIntegrationProcessLocalService;
+
+	@Reference
+	private CommerceDataIntegrationProcessLogLocalService _commerceDataIntegrationProcessLogLocalService;
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		CommerceTrainingCustomScheduledTaskExecutorService.class);
