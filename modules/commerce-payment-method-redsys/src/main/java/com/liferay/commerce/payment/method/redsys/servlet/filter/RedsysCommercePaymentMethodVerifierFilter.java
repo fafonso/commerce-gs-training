@@ -1,11 +1,10 @@
 package com.liferay.commerce.payment.method.redsys.servlet.filter;
 
-import javax.servlet.Filter;
-
-import org.osgi.service.component.annotations.Component;
-
 import com.liferay.commerce.payment.method.redsys.constants.RedsysCommercePaymentMethodConstants;
 import com.liferay.portal.servlet.filters.authverifier.AuthVerifierFilter;
+
+import javax.servlet.Filter;
+import org.osgi.service.component.annotations.Component;
 
 /**
  * 
