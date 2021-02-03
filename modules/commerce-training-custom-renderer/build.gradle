@@ -12,6 +12,7 @@ dependencies {
 	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.api", version: "22.3.3"
 	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.product.api", version: "29.3.0"
 	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.taglib", version: "4.0.8"
+	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.product.content.api", version: "5.0.5"
 		
 	compileOnly project(":modules:commerce-training-car:commerce-training-car-api")
 	
