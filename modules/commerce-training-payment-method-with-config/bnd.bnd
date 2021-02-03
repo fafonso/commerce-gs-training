@@ -1,0 +1,5 @@
+Bundle-Name: commerce-training-payment-method-with-config
+Bundle-SymbolicName: commerce.training.payment.method.with.config
+Bundle-Version: 1.0.0
+Web-ContextPath: /commerce-payment-method-card
+-metatype: *

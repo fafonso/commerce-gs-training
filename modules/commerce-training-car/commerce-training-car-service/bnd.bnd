@@ -1,0 +1,6 @@
+Bundle-Name: commerce-training-car-service
+Bundle-SymbolicName: commerce.training.car.garage.service
+Bundle-Version: 1.0.0
+Liferay-Require-SchemaVersion: 1.0.0
+Liferay-Service: true
+-dsannotations-options: inherit

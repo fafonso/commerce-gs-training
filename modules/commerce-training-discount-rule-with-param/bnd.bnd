@@ -1,0 +1,4 @@
+Bundle-Name: commerce-training-discount-rule-with-param
+Bundle-SymbolicName: commerce.training.discount.rule.with.param
+Bundle-Version: 1.0.0
+Web-ContextPath: /discount-rule-with-param

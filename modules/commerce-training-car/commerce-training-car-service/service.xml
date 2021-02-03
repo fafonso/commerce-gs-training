@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_2_0.dtd">
+
+<service-builder
+	package-path="commerce.training.car.garage"
+	auto-namespace-tables="false">
+	<author>Roselaine Marques</author>
+	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" 
+		remote-service="false" session-factory="sampleSessionFactory" table="foo" 
+		tx-manager="sampleTransactionManager uuid="true""> -->
+	<namespace>CommerceTraining</namespace>
+
+	<entity local-service="true" remote-service="false" uuid="true"
+		name="CarGarage">
+
+		<!-- PK fields -->
+
+		<column name="carGarageId" primary="true" type="long" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Relationships -->
+		<column name="cpDefinitionId" type="long" />
+
+		<!-- Other fields -->
+		<column name="title" type="String" />
+		<column name="latitude" type="double" />
+		<column name="longitude" type="double" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="createDate" />
+		</order>
+
+		<!-- Finder methods -->
+		<finder name="CPDefinitionId" return-type="CarGarage">
+			<finder-column name="cpDefinitionId" />
+		</finder>
+
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
+
+		<!-- References -->
+
+		<reference entity="AssetEntry"
+			package-path="com.liferay.portlet.asset" />
+		<reference entity="AssetTag"
+			package-path="com.liferay.portlet.asset" />
+
+	</entity>
+
+
+	<entity local-service="true" remote-service="false" uuid="true"
+		name="CarGarageProduct">
+
+		<!-- PK fields -->
+
+		<column name="carGarageProductId" primary="true" type="long" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Relationships -->
+		<column name="carGarageId" type="long" />
+		<column name="cpDefinitionId" type="long" />
+		
+		<!-- Other fields -->
+		<column name="title" type="String" />
+
+		<!-- Order -->
+		<order by="asc">
+			<order-column name="cpDefinitionId" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="CarGarageId" return-type="Collection">
+			<finder-column name="carGarageId" />
+		</finder>
+
+		<!-- References -->
+
+		<reference entity="AssetEntry"
+			package-path="com.liferay.portlet.asset" />
+		<reference entity="AssetTag"
+			package-path="com.liferay.portlet.asset" />
+	</entity>
+    <exceptions>
+        <exception>CarGarageLatitude</exception>
+        <exception>CarGarageLongitude</exception>
+        <exception>CarGarageCPDefinitionId</exception>
+        <exception>CarGarageProductCPDefinitionId</exception>
+        <exception>CarGarageProductCarGarageId</exception>
+    </exceptions>
+
+
+</service-builder>

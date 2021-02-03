@@ -1,0 +1,3 @@
+Bundle-Name: commerce-training-order-validator-price-quantity
+Bundle-SymbolicName: commerce.training.order.validator.price.quantity
+Bundle-Version: 1.0.0

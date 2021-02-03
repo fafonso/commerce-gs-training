@@ -1,0 +1,36 @@
+dependencies {
+    testCompile group: "com.liferay", name: "com.liferay.petra.lang"
+    testCompile group: "com.liferay", name: "com.liferay.petra.string"
+    testCompile group: "com.liferay", name: "com.liferay.registry.api"
+    testCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel"
+    testCompile group: "javax.portlet", name: "portlet-api"
+    testCompile group: "junit", name: "junit"
+    testCompile group: "org.apache.felix", name: "org.apache.felix.http.servlet-api", version: "1.1.2"
+    testCompile group: "org.osgi", name: "org.osgi.core"
+    testCompile group: "org.slf4j", name: "slf4j-api"
+    testCompile group: "org.springframework", name: "spring-test"
+
+    testIntegrationCompile group: "com.liferay", name: "com.liferay.arquillian.extension.junit.bridge", version: "1.0.19"
+    testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.test", version: "6.2.5"
+    testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.test.integration", version: "6.0.24"
+    testIntegrationCompile group: "log4j", name: "log4j", version: "1.2.17"
+    testIntegrationCompile project(":modules:commerce-training-car:commerce-training-car-api")
+    testIntegrationCompile project(":modules:commerce-training-car:commerce-training-car-service")
+
+    testModules group: "com.liferay", name: "com.liferay.arquillian.extension.junit.bridge.connector", version: "1.0.0"
+    testModules group: "com.liferay", name: "com.liferay.sync.api", version: "5.0.6"
+    testModules group: "com.liferay", name: "com.liferay.sync.service", version: "3.0.9"
+    testModules group: "com.liferay.portal", name: "com.liferay.portal.test", version: "6.2.5"
+    testModules group: "com.liferay.portal", name: "com.liferay.portal.test.integration", version: "6.0.24"
+    testModules group: "org.apache.aries.jmx", name: "org.apache.aries.jmx.core", version: "1.1.7"
+}
+
+copyTestModules {
+    dependsOn ":modules:commerce-training-car:commerce-training-car-api:deploy", ":modules:commerce-training-car:commerce-training-car-service:deploy"
+}
+/*
+setUpTestableTomcat {
+    dependsOn ":initBundle"
+}
+
+ */

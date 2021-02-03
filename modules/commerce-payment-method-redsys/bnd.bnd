@@ -1,0 +1,7 @@
+Bundle-Name: commerce-payment-method-redsys
+Bundle-SymbolicName: commerce.payment.method.redsys
+Bundle-Version: 1.0.0
+Web-ContextPath: /redsys-commerce-payment-method-card
+Export-Package:\
+	 com.liferay.commerce.payment.method.redsys.constants,\
+	 com.liferay.commerce.payment.method.redsys

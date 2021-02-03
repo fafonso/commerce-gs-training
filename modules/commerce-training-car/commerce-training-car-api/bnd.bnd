@@ -1,0 +1,10 @@
+Bundle-Name: commerce-training-car-api
+Bundle-SymbolicName: commerce.training.car.garage.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	commerce.training.car.garage.exception,\
+	commerce.training.car.garage.model,\
+	commerce.training.car.garage.service,\
+	commerce.training.car.garage.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../commerce-training-car-service/service.xml

@@ -1,0 +1,152 @@
+[
+	{
+		"code": "CNY",
+		"name": "Chinese yuan renminbi",
+		"rate": 9.49073
+	},
+	{
+		"code": "EUR",
+		"name": "Euro",
+		"rate": 1.21177
+	},
+	{
+		"code": "JPY",
+		"name": "Japanese yen",
+		"rate": 150.862
+	},
+	{
+		"code": "GBP",
+		"name": "British pound",
+		"rate": 1.09733
+	},
+	{
+		"code": "USD",
+		"name": "US dollar",
+		"rate": 1.39777
+	},
+	{
+		"code": "AUD",
+		"name": "Australian dollar",
+		"rate": 1.9454
+	},
+	{
+		"code": "BRL",
+		"name": "Brazilian real",
+		"rate": 5.15262
+	},
+	{
+		"code": "CAD",
+		"name": "Canadian dollar",
+		"rate": 1.84981
+	},
+	{
+		"code": "CLP",
+		"name": "Chilean peso",
+		"rate": 947.813
+	},
+	{
+		"code": "CZK",
+		"name": "Czech koruna",
+		"rate": 31.0599
+	},
+	{
+		"code": "DKK",
+		"name": "Danish krone",
+		"rate": 9.04642
+	},
+	{
+		"code": "HUF",
+		"name": "Hungarian forint",
+		"rate": 390.23
+	},
+	{
+		"code": "INR",
+		"name": "Indian rupee",
+		"rate": 98.562
+	},
+	{
+		"code": "IDR",
+		"name": "Indonesian rupiah",
+		"rate": 19698.8
+	},
+	{
+		"code": "ILS",
+		"name": "Israeli New Shekel",
+		"rate": 5.12143
+	},
+	{
+		"code": "KRW",
+		"name": "Korean won",
+		"rate": 1567.74
+	},
+	{
+		"code": "MYR",
+		"name": "Malaysian ringgit",
+		"rate": 5.72459
+	},
+	{
+		"code": "MXN",
+		"name": "Mexican peso",
+		"rate": 26.7972
+	},
+	{
+		"code": "NZD",
+		"name": "New Zealand dollar",
+		"rate": 2.05827
+	},
+	{
+		"code": "NOK",
+		"name": "Norwegian krone",
+		"rate": 11.8138
+	},
+	{
+		"code": "PKR",
+		"name": "Pakistani rupee",
+		"rate": 194.073
+	},
+	{
+		"code": "PHP",
+		"name": "Philippine peso",
+		"rate": 73.2097
+	},
+	{
+		"code": "PLN",
+		"name": "Polish zloty",
+		"rate": 5.22207
+	},
+	{
+		"code": "RUB",
+		"name": "Russian ruble",
+		"rate": 93.4562
+	},
+	{
+		"code": "SGD",
+		"name": "Singapore dollar",
+		"rate": 1.88797
+	},
+	{
+		"code": "ZAR",
+		"name": "South African rand",
+		"rate": 19.3996
+	},
+	{
+		"code": "SEK",
+		"name": "Swedish krona",
+		"rate": 12.4178
+	},
+	{
+		"code": "CHF",
+		"name": "Swiss franc",
+		"rate": 1.36562
+	},
+	{
+		"code": "THB",
+		"name": "Thai baht",
+		"rate": 44.6128
+	},
+	{
+		"code": "HKD",
+		"name": "Hong Kong dollar",
+		"rate": 10.9628
+	}
+]
