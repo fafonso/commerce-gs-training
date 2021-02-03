@@ -1,4 +1,3 @@
-
 package com.liferay.commerce.training.order.validator.constants;
 
 public class CustomOrderValidatorConstants {

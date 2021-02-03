@@ -15,18 +15,25 @@ import java.util.ResourceBundle;
 
 import org.osgi.service.component.annotations.Component;
 
-/**
- * It is important to provide a distinct key for the payment method so that
- * Liferay Commerce can distinguish our new payment method from others in the
- * payment method registry. Reusing a key that is already in use will override
- * the existing associated payment method.
- */
-@Component(immediate = true, property = "commerce.payment.engine.method.key=" +
-	CommerceTrainingPaymentMethod.KEY, service = CommercePaymentMethod.class)
+
+@Component(immediate = true, 
+			property = "commerce.payment.engine.method.key=" + CommerceTrainingPaymentMethod.KEY, service = CommercePaymentMethod.class)
+
 public class CommerceTrainingPaymentMethod implements CommercePaymentMethod {
 
+	/**
+	 * It is important to provide a distinct key for the payment method so that
+	 * Liferay Commerce can distinguish our new payment method from others in the
+	 * payment method registry. Reusing a key that is already in use will override
+	 * the existing associated payment method.
+	 */
 	public static final String KEY = "Example";
 
+	/**
+	 * Implement custom payment completion logic in this method. CommercePaymentResult 
+	 * is a container that stores information relevant to the completion of a payment 
+	 * process. See CommercePaymentResult.java for more information.
+	 */
 	@Override
 	public CommercePaymentResult completePayment(
 		CommercePaymentRequest commercePaymentRequest)
@@ -40,9 +47,7 @@ public class CommerceTrainingPaymentMethod implements CommercePaymentMethod {
 
 	/**
 	 * This populates the "Description" column in the Payment Methods
-	 * administration page. See the implementation in
-	 * CommerceTrainingPaymentMethod.java for a reference in retrieving the
-	 * description with a language key.
+	 * administration page. Retrieving the description with a language key.
 	 */
 	@Override
 	public String getDescription(Locale locale) {

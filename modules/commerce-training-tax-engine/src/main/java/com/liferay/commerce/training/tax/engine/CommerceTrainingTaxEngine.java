@@ -21,8 +21,19 @@ import org.osgi.service.component.annotations.Component;
 )
 public class CommerceTrainingTaxEngine implements CommerceTaxEngine {
 
+	/**
+	 * It is important to provide a distinct key for the tax engine so that Liferay Commerce can distinguish 
+	 * the new engine from others in the tax engine registry. Reusing a key that is already in use will override 
+	 * the existing associated tax engine.
+	 */
 	public static final String KEY = "Example";
 
+	/**
+	 * This method will be where the business logic is implemented for our tax engine.
+	 * The CommerceTaxCalculateRequest parameter contains information needed for making our calculation. 
+	 * For this example, we use the price from the CommerceTaxCalculateRequest, as well as a value indicating whether
+	 * to apply the rate as a percentage
+	 */
 	@Override
 	public CommerceTaxValue getCommerceTaxValue(
 			CommerceTaxCalculateRequest commerceTaxCalculateRequest)
@@ -39,7 +50,9 @@ public class CommerceTrainingTaxEngine implements CommerceTaxEngine {
 
 		return new CommerceTaxValue("flat-tax", KEY, flatTaxValue);
 	}
-
+	/**
+	 * This returns a brief description of our tax engine. Retrieving the description with a language key.
+	 */
 	@Override
 	public String getDescription(Locale locale) {
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
@@ -48,7 +61,9 @@ public class CommerceTrainingTaxEngine implements CommerceTaxEngine {
 		return LanguageUtil.get(
 			resourceBundle, "a-flat-tax-rate-that-does-not-adjust");
 	}
-
+	/**
+	 * This returns the name of our tax engine. It works similarly to the getDescription method.
+	 */
 	@Override
 	public String getName(Locale locale) {
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(

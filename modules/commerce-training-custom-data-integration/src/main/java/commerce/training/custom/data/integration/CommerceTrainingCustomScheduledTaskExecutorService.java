@@ -20,14 +20,14 @@ import com.liferay.commerce.data.integration.service.ScheduledTaskExecutorServic
 import com.liferay.commerce.model.CommerceOrder;
 import com.liferay.commerce.model.CommerceOrderItem;
 import com.liferay.commerce.service.CommerceOrderLocalService;
+import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.backgroundtask.BackgroundTaskConstants;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 
@@ -35,9 +35,6 @@ import commerce.training.car.garage.service.CarGarageLocalService;
 import commerce.training.car.garage.service.CarGarageProductLocalService;
 import commerce.training.custom.data.integration.type.CommerceTrainingCustomDataIntegrationType;
 
-/**
- * @author fafonso
- */
 @Component(immediate = true, property = "data.integration.service.executor.key=" +
 	CommerceTrainingCustomDataIntegrationType.KEY, service = ScheduledTaskExecutorService.class)
 public class CommerceTrainingCustomScheduledTaskExecutorService
@@ -45,13 +42,12 @@ public class CommerceTrainingCustomScheduledTaskExecutorService
 
 	@Override
 	public String getName() {
-
 		return null;
-
 	}
 
 	/**
 	 * This process is run by Data Integration Admin
+	 * return Orders with vehicle service item
 	 */
 	@Override
 	public void runProcess(long commerceDataIntegrationProcessId)
@@ -177,13 +173,15 @@ public class CommerceTrainingCustomScheduledTaskExecutorService
 			sb.append(CharPool.NEW_LINE);
 		}
 
-		String fileName = "../../work/garage_service.csv";
+	     String fileName = "/tmp/garage_service.csv";
+
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(sb.toString());
 		}
 
 		File file = new File(fileName);
+		
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
 			writer.write(sb.toString());
 		}

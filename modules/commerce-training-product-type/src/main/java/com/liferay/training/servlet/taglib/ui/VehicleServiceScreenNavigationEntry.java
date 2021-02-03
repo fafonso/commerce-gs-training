@@ -1,17 +1,6 @@
 
 package com.liferay.training.servlet.taglib.ui;
 
-import java.io.IOException;
-import java.util.Locale;
-import java.util.ResourceBundle;
-
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
-
 import com.liferay.commerce.product.definitions.web.portlet.action.ActionHelper;
 import com.liferay.commerce.product.model.CPDefinition;
 import com.liferay.commerce.product.service.CPDefinitionLocalService;
@@ -24,7 +13,18 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.util.WebKeys;
-import com.liferay.training.product.display.context.VehicleServiceDisplayContext;
+import com.liferay.training.product.display.VehicleServiceDisplayContext;
+
+import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 import commerce.training.car.garage.service.CarGarageLocalService;
 import commerce.training.car.garage.service.CarGarageProductLocalService;
@@ -37,21 +37,37 @@ import commerce.training.car.garage.service.CarGarageProductLocalService;
 })
 public class VehicleServiceScreenNavigationEntry
 	implements ScreenNavigationCategory, ScreenNavigationEntry<CPDefinition> {
-
+	
+	/**
+	 * It is important to provide a distinct key for the navigation screen class 
+	 * so that Liferay Commerce can distinguish it as a separate screen from the 
+	 * existing screens. Reusing a key that is already in use will override the 
+	 * existing associated navigation screen.
+	 */
 	public static final String KEY = "Vehicle Service";
 
+	/**
+	 * This returns a unique identifier for the category used for the screen navigation entry.
+	 */
 	@Override
 	public String getCategoryKey() {
 
 		return KEY;
 	}
-
+	/**
+	 * This returns a unique identifier for the screen navigation entry. It returns the same 
+	 * value as getCategoryKey.
+	 */
 	@Override
 	public String getEntryKey() {
 
 		return KEY;
 	}
-
+	/**
+	 * This returns a text label for the screen navigation entry that will be displayed in the UI. 
+	 * See the implementation in C1N4ScreenNavigationEntry.java for a reference in retrieving 
+	 * the label with a language key.
+	 */
 	@Override
 	public String getLabel(Locale locale) {
 
@@ -61,6 +77,10 @@ public class VehicleServiceScreenNavigationEntry
 		return LanguageUtil.get(resourceBundle, "vehicle-service");
 	}
 
+	/**
+	 * This is the same method as getScreenNavigationKey for the ScreenNavigationCategory interface. 
+	 * We implemented this method by returning the string value "cp.definition.general".
+	 */
 	@Override
 	public String getScreenNavigationKey() {
 
@@ -125,12 +145,12 @@ public class VehicleServiceScreenNavigationEntry
 	private JSPRenderer _jspRenderer;
 
 	/**
-	 * The value we set for osgi.web.symbolicname matches the value for
-	 * Bundle-SymbolicName in our bnd.bnd file. These values must match for the
-	 * ServletContext to locate the JSP. We declare a unique value for
-	 * Web-ContextPath in our bnd.bnd file so the ServletContext is correctly
-	 * generated. In our example, Web-ContextPath is set to /c1n4-web. See
-	 * bnd.bnd for a reference on these values.
+	 * Define the ServletContext in our ScreenNavigationEntry class using the symbolic name of our 
+	 * bundle so that it can find the JSP in our module.
+	 * 
+	 * We declare a unique value for Web-ContextPath in our bnd.bnd file so the ServletContext is 
+	 * correctly generated. In our example, Web-ContextPath is set to /commerce-training-product-type. See bnd.bnd for 
+	 * a reference on these values.
 	 */
 	@Reference(target = "(osgi.web.symbolicname=commerce.training.product.type)")
 	private ServletContext _servletContext;

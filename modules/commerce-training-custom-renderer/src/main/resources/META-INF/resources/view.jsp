@@ -112,7 +112,7 @@ Double longitude = (Double) request.getAttribute("longitude");
 
 			<h4 class="commerce-subscription-info w-100" data-text-cp-instance-subscription-info>
 				<c:if test="<%= cpSku != null %>">
-					<liferay-commerce:subscription-info
+					<commerce-ui:product-subscription-info
 						CPInstanceId="<%= cpSku.getCPInstanceId() %>"
 					/>
 				</c:if>

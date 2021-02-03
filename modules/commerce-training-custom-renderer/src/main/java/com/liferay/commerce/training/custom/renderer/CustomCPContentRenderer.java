@@ -1,14 +1,6 @@
 
 package com.liferay.commerce.training.custom.renderer;
 
-import com.liferay.commerce.product.catalog.CPCatalogEntry;
-import com.liferay.commerce.product.content.render.CPContentRenderer;
-import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
-import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
-
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -19,6 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+
+import com.liferay.commerce.product.catalog.CPCatalogEntry;
+import com.liferay.commerce.product.content.render.CPContentRenderer;
+import com.liferay.frontend.taglib.servlet.taglib.util.JSPRenderer;
+import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.ResourceBundleUtil;
 
 import commerce.training.car.garage.model.CarGarage;
 import commerce.training.car.garage.model.CarGarageProduct;
@@ -40,6 +40,7 @@ import commerce.training.car.garage.service.CarGarageProductLocalService;
  */
 @Component(immediate = true, property = {
 	"commerce.product.content.renderer.key=" + CustomCPContentRenderer.KEY,
+    "commerce.product.content.renderer.order=" + 1,
 	"commerce.product.content.renderer.type=Vehicle Service",
 }, service = CPContentRenderer.class)
 public class CustomCPContentRenderer implements CPContentRenderer {

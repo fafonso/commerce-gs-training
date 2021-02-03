@@ -1,4 +1,3 @@
-
 package com.liferay.commerce.training.order.validator;
 
 import java.util.HashSet;
@@ -24,6 +23,7 @@ import commerce.training.car.garage.service.CarGarageLocalService;
 import commerce.training.car.garage.service.CarGarageProductLocalService;
 
 /**
+ * 
  * It is important to provide a distinct key for the order validator so that
  * Liferay Commerce can distinguish the new order validator from others in the
  * order validator registry. Reusing a key that is already in use will override
@@ -33,6 +33,7 @@ import commerce.training.car.garage.service.CarGarageProductLocalService;
  * a value of 10. Giving our order validator a value of 9 ensures that it will
  * perform its validation immediately before the default validator.
  */
+
 @Component(immediate = true, property = {
 	"commerce.order.validator.key=" +
 		CustomOrderValidatorConstants.CUSTOMORDERVALIDATORKEY,
@@ -58,7 +59,12 @@ public class CustomOrderValidator implements CommerceOrderValidator {
 	 * validation logic. This method is called whenever a customer adds an item
 	 * to their cart. It does this by returning a CommerceOrderValidatorResult,
 	 * which uses a boolean to signal whether or not the result passes
-	 * validation; see CommerceOrderValidatorResult.java.
+	 * validation;
+	 * 
+	 * This method garantee that only one product of Vehicle Service will be added on the cart.
+	 * 
+	 * Here we can validate what there are on the Order and What is or quantity of the new Item to add. 
+	 * 
 	 */
 	@Override
 	public CommerceOrderValidatorResult validate(

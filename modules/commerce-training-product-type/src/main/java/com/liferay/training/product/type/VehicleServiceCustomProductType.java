@@ -20,13 +20,16 @@ import org.osgi.service.component.annotations.Component;
  * ensures that it will appear immediately after the virtual type.
  */
 @Component(immediate = true, property = {
-	"commerce.product.type.display.order:Integer=15",
+	"commerce.product.type.display.order:Integer=16",
 	"commerce.product.type.name=" + VehicleServiceCustomProductType.NAME
 }, service = CPType.class)
 public class VehicleServiceCustomProductType implements CPType {
 
 	public static final String NAME = "Vehicle Service";
 
+	/**
+	 * This method is where any custom deletion logic for the product type will be added.
+	 */
 	@Override
 	public void deleteCPDefinition(long cpDefinitionId)
 		throws PortalException {
@@ -34,9 +37,7 @@ public class VehicleServiceCustomProductType implements CPType {
 	}
 
 	/**
-	 * This returns a text label that describes the product type. See the
-	 * implementation in VehicleServiceCustomProductType.java for a reference in
-	 * retrieving the label with a language key.
+	 * This returns a text label that describes the product type. 
 	 */
 	@Override
 	public String getLabel(Locale locale) {
@@ -47,7 +48,10 @@ public class VehicleServiceCustomProductType implements CPType {
 		return LanguageUtil.get(resourceBundle, "vehicle-service");
 
 	}
-
+	/**
+	 * This returns the name of our product type. This name may be a language key 
+	 * that corresponds to the name that will appear in the UI.
+	 */
 	@Override
 	public String getName() {
 

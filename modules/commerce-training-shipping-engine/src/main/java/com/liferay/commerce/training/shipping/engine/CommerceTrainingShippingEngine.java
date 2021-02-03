@@ -75,7 +75,7 @@ public class CommerceTrainingShippingEngine implements CommerceShippingEngine {
 
 		try {
 			commerceShippingOptions = _getCommerceShippingOptions(
-				commerceContext.getSiteGroupId(), commerceOrder, locale);
+					commerceOrder.getGroupId() , commerceOrder, locale);
 		}
 		catch (PortalException pe) {
 			if (_log.isDebugEnabled()) {
@@ -104,13 +104,19 @@ public class CommerceTrainingShippingEngine implements CommerceShippingEngine {
 		return LanguageUtil.get(resourceBundle, "discounted-rate");
 	}
 
+	/**
+	 * First, use CommerceShippingMethodLocalService to get the “shipping method” (representing our shipping engine), 
+	 * and then use CommerceShippingFixedOptionLocalService to get the available options.
+	 */
 	private List<CommerceShippingFixedOption> _getCommerceShippingFixedOptions(
 		long groupId) {
+		
+		// We don't have implementation Shipping Options for this engine. For this I changed to get the Fixed Options -> changing the "KEY" to "fixed"
+		//CommerceShippingMethod commerceShippingMethod =_commerceShippingMethodLocalService.fetchCommerceShippingMethod(groupId, KEY);
+		
+		CommerceShippingMethod commerceShippingMethod =_commerceShippingMethodLocalService.fetchCommerceShippingMethod(groupId, "fixed");
 
-		CommerceShippingMethod commerceShippingMethod =
-			_commerceShippingMethodLocalService.fetchCommerceShippingMethod(
-				groupId, KEY);
-
+		
 		if (commerceShippingMethod == null) {
 			return Collections.emptyList();
 		}
@@ -167,7 +173,7 @@ public class CommerceTrainingShippingEngine implements CommerceShippingEngine {
 			commerceShippingFixedOption.getCommerceShippingMethodId(),
 			commerceAddress.getCommerceCountryId());
 	}
-
+	
 	private static final Log _log =
 		LogFactoryUtil.getLog(CommerceTrainingShippingEngine.class);
 

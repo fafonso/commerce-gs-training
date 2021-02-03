@@ -1,3 +1,5 @@
+package com.liferay.training.product.action;
+
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
@@ -11,9 +13,6 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-
-package com.liferay.training.product.action;
-
 import com.liferay.commerce.product.constants.CPPortletKeys;
 import com.liferay.commerce.product.model.CPDefinition;
 import com.liferay.commerce.product.service.CPDefinitionLocalService;
@@ -35,9 +34,6 @@ import commerce.training.car.garage.model.CarGarage;
 import commerce.training.car.garage.service.CarGarageLocalService;
 import commerce.training.car.garage.service.CarGarageProductLocalService;
 
-/**
- * @author Andrea Di Giorgi
- */
 @Component(immediate = true, property = {
 	"javax.portlet.name=" + CPPortletKeys.CP_DEFINITIONS,
 	"mvc.command.name=editVehicleService"

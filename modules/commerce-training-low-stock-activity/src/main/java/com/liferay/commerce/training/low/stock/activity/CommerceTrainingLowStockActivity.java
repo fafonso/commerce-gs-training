@@ -28,10 +28,9 @@ import org.osgi.service.component.annotations.Component;
 	"commerce.low.stock.activity.key=" + CommerceTrainingLowStockActivity.KEY,
 	"commerce.low.stock.activity.priority:Integer=9"
 }, service = CommerceLowStockActivity.class)
-public class CommerceTrainingLowStockActivity
-	implements CommerceLowStockActivity {
+public class CommerceTrainingLowStockActivity implements CommerceLowStockActivity {
 
-	public static final String KEY = "Example";
+	public static final String KEY = "LowSKU";
 
 	/**
 	 * This method will be where the business logic is implemented for the

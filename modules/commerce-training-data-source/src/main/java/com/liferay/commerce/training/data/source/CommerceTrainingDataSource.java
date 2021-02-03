@@ -38,12 +38,11 @@ public class CommerceTrainingDataSource implements CPDataSource {
 	 * The product data source name must be a unique value so that Liferay
 	 * Commerce can distinguish the new datafrom existing data sources.
 	 */
-	public static final String NAME = "Example";
+	public static final String NAME = "Products Ending in Same Word";
 
-	/*
+	/**
 	 * This method returns a text label that describes how product data source
-	 * will search for related products. See the implementation in
-	 * CommerceTrainingDataSource.java for a reference in retrieving the label
+	 * will search for related products on "Publisher Products". 
 	 * with a language key.
 	 */
 	@Override

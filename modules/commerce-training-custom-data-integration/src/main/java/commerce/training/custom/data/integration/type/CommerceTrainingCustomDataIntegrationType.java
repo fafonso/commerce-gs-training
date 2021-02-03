@@ -7,10 +7,7 @@ import org.osgi.service.component.annotations.Component;
 import com.liferay.commerce.data.integration.process.type.ProcessType;
 import com.liferay.portal.kernel.language.LanguageUtil;
 
-/**
- * @author fafonso
- *
- */
+
 @Component(
 		immediate = true,
 		property = {

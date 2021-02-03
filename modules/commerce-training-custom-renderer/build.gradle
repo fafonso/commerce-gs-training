@@ -1,26 +1,18 @@
 dependencies {
-
-	compileOnly group: "com.liferay.portal", name: "release.portal.api"
-	
 	compileOnly group: "org.osgi", name: "org.osgi.core"
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
-	
+	compileOnly group: "org.osgi", name: "org.osgi.core"
+	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
+	compileOnly group: "com.liferay.portal", name: "release.portal.api", version:"7.3.1"
+	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.5.0"
 	compileOnly group: "javax.portlet", name: "portlet-api"
     compileOnly group: "javax.servlet", name: "javax.servlet-api"
+	compileOnly group: "org.osgi", name: "osgi.cmpn"
 	
-	compileOnly group: 'com.liferay.commerce', name: 'com.liferay.commerce.api'
-	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.product.api"
-    compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.product.definitions.web"
-    compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.product.content.api"
-	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.product.type.grouped.api"
-    compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.product.type.virtual.api"
-    compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.theme.minium.api"
-	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.frontend.taglib"
- 	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.cart.taglib"
- 	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.frontend.api"
-	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.product.taglib"
-	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.taglib"
+	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.api", version: "22.3.3"
+	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.product.api", version: "29.3.0"
+	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.taglib", version: "4.0.8"
+		
+	compileOnly project(":modules:commerce-training-car:commerce-training-car-api")
 	
-	compileOnly project(":modules:commerce-training-car-garage-api")
-	  
 }

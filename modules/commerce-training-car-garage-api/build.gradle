@@ -1,6 +1,0 @@
-dependencies {
-	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib"
-	compileOnly group: "org.osgi", name: "org.osgi.core"
-
-	compileOnly group: "com.liferay.portal", name: "release.portal.api"
-}

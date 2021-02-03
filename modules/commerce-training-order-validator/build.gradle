@@ -1,10 +1,12 @@
 dependencies {
-    compileOnly group: 'com.liferay.commerce', name: 'com.liferay.commerce.api'
-    compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.product.api"
-    
-    compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
-    
-    compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
-    
-    compileOnly project(":modules:commerce-training-car-garage-api")
+	compileOnly group: "org.osgi", name: "org.osgi.core"
+	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
+	
+	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.api", version: "22.3.3"
+	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.product.api", version: "29.3.0"
+	
+	compileOnly group: "com.liferay.portal", name: "release.portal.api", version:"7.3.1"
+	
+	compileOnly project(":modules:commerce-training-car:commerce-training-car-api")
+	
 }

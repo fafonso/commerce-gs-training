@@ -17,7 +17,7 @@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
 
-<%@ page import="com.liferay.training.product.display.context.VehicleServiceDisplayContext" %>
+<%@ page import="com.liferay.training.product.display.VehicleServiceDisplayContext" %>
 <%@ page import="commerce.training.car.garage.model.CarGarage" %>
 <%@ page import="commerce.training.car.garage.model.CarGarageProduct" %>
 <%@ page import="commerce.training.car.garage.service.CarGarageLocalService" %>
