@@ -89,7 +89,7 @@ public class CustomCommerceCheckoutStep extends BaseCommerceCheckoutStep {
 				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 	
 	/**

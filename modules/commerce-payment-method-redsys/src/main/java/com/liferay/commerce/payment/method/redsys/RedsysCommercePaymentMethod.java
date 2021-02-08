@@ -171,7 +171,7 @@ public class RedsysCommercePaymentMethod implements CommercePaymentMethod{
 
 			RedsysPaymentMethodCardGroupServiceConfiguration paymentMethodCardGroupServiceConfiguration =
 				_getConfiguration(commerceOrder.getGroupId());
-
+			
 			String environment = StringUtil.toUpperCase(paymentMethodCardGroupServiceConfiguration.mode());
 			String clientSecret = paymentMethodCardGroupServiceConfiguration.clientSecret();
 			String merchantCode = paymentMethodCardGroupServiceConfiguration.merchantCode();
@@ -254,7 +254,7 @@ public class RedsysCommercePaymentMethod implements CommercePaymentMethod{
 		messages.add(messageLocalizable);
 		
 		return messages;
-	}	
+	}
 	
 	@Reference
 	private CommerceOrderService _commerceOrderService;

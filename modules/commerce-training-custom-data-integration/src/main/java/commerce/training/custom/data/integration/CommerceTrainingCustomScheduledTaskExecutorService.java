@@ -173,7 +173,7 @@ public class CommerceTrainingCustomScheduledTaskExecutorService
 			sb.append(CharPool.NEW_LINE);
 		}
 
-	     String fileName = "/tmp/garage_service.csv";
+	     String fileName = "csv_reports/garage_service.csv";
 
 
 		if (_log.isDebugEnabled()) {
@@ -204,6 +204,7 @@ public class CommerceTrainingCustomScheduledTaskExecutorService
 	public static String[] columnNames = {
 		"OrderId", "Order Status", "Payment Status", "Total", "Car Garage"
 	};
+	
 	public static final String CSV_SEPARATOR = ",";
 
 	@Reference
