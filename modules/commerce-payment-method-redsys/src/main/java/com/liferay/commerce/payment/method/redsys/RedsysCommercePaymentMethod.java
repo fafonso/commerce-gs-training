@@ -1,5 +1,19 @@
 package com.liferay.commerce.payment.method.redsys;
 
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Currency;
+import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+
 import com.liferay.commerce.constants.CommerceOrderConstants;
 import com.liferay.commerce.constants.CommerceOrderPaymentConstants;
 import com.liferay.commerce.constants.CommercePaymentConstants;
@@ -29,20 +43,6 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.URLCodec;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
-
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Currency;
-import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 import sis.redsys.api.ApiMacSha256;
 /**
@@ -171,7 +171,7 @@ public class RedsysCommercePaymentMethod implements CommercePaymentMethod{
 
 			RedsysPaymentMethodCardGroupServiceConfiguration paymentMethodCardGroupServiceConfiguration =
 				_getConfiguration(commerceOrder.getGroupId());
-			
+
 			String environment = StringUtil.toUpperCase(paymentMethodCardGroupServiceConfiguration.mode());
 			String clientSecret = paymentMethodCardGroupServiceConfiguration.clientSecret();
 			String merchantCode = paymentMethodCardGroupServiceConfiguration.merchantCode();
@@ -216,8 +216,7 @@ public class RedsysCommercePaymentMethod implements CommercePaymentMethod{
 				resultMessage, success);
 	}
 	
-	private RedsysPaymentMethodCardGroupServiceConfiguration _getConfiguration(long groupId)
-			throws ConfigurationException {
+	private RedsysPaymentMethodCardGroupServiceConfiguration _getConfiguration(long groupId) throws ConfigurationException {
 
 			return _configurationProvider.getConfiguration(
 					RedsysPaymentMethodCardGroupServiceConfiguration.class,
@@ -254,7 +253,7 @@ public class RedsysCommercePaymentMethod implements CommercePaymentMethod{
 		messages.add(messageLocalizable);
 		
 		return messages;
-	}
+	}	
 	
 	@Reference
 	private CommerceOrderService _commerceOrderService;

@@ -120,7 +120,7 @@ public class CommerceTrainingDataSource implements CPDataSource {
 		return nameTokens[nameTokens.length - 1];
 	}
 
-	@Reference
+	@Reference 
 	private CPDefinitionHelper _cpDefinitionHelper;
 
 	@Reference

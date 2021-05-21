@@ -1,8 +1,19 @@
 
 package com.liferay.training.servlet.taglib.ui;
 
-import com.liferay.commerce.product.portlet.action.ActionHelper;
+import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+
 import com.liferay.commerce.product.model.CPDefinition;
+import com.liferay.commerce.product.portlet.action.ActionHelper;
 import com.liferay.commerce.product.service.CPDefinitionLocalService;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationCategory;
 import com.liferay.frontend.taglib.servlet.taglib.ScreenNavigationEntry;
@@ -14,17 +25,6 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.training.product.display.VehicleServiceDisplayContext;
-
-import java.io.IOException;
-import java.util.Locale;
-import java.util.ResourceBundle;
-
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
 
 import commerce.training.car.garage.service.CarGarageLocalService;
 import commerce.training.car.garage.service.CarGarageProductLocalService;

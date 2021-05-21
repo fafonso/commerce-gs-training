@@ -1,18 +1,10 @@
 dependencies {
-	compileOnly group: "com.liferay", name: "com.liferay.petra.io"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.lang"
-	compileOnly group: "com.liferay", name: "com.liferay.petra.string"
-	compileOnly group: "com.liferay", name: "com.liferay.portal.aop.api"
-	compileOnly group: "com.liferay.portal", name: "release.portal.api", version:"7.3.1"
-	compileOnly group: "org.osgi", name: "org.osgi.annotation.versioning"
-	compileOnly group: "org.osgi", name: "org.osgi.core"
-	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
+	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
 	compileOnly project(":modules:commerce-training-car:commerce-training-car-api")
 }
 
 buildService {
 	apiDir = "../commerce-training-car-api/src/main/java"
-	testDir = "../commerce-training-car-test/src/testIntegration/java"
 }
 
 group = "commerce.training.car.garage"

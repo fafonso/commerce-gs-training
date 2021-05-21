@@ -242,25 +242,34 @@ Double longitude = (Double) request.getAttribute("longitude");
 			</div>
 
 			<h2 class="commerce-price" data-text-cp-instance-price>
-				99
+				<c:if test="<%= cpSku != null %>">
+<%-- 					<commerce-ui:price
+						CPInstanceId="<%= cpSku.getCPInstanceId() %>"
+					/> --%>
+				</c:if>
 			</h2>
 
 			<div>
-				99
+				<c:if test="<%= cpSku != null %>">
+					<%-- <liferay-commerce:tier-price
+						CPInstanceId="<%= cpSku.getCPInstanceId() %>"
+						taglibQuantityInputId='<%= renderResponse.getNamespace() + cpDefinitionId + "Quantity" %>'
+					/> --%>
+				</c:if>
 			</div>
 			<%
-				CPInstance cpInstance = cpContentHelper.getDefaultCPInstance(request);
+							CPInstance cpInstance = cpContentHelper.getDefaultCPInstance(request);
 
-				long cpInstanceId = 0;
+							long cpInstanceId = 0;
 
-				if (cpInstance != null) {
-					cpInstanceId = cpInstance.getCPInstanceId();
-				}
+							if (cpInstance != null) {
+								cpInstanceId = cpInstance.getCPInstanceId();
+							}
 
-				String productContentId = renderResponse.getNamespace() + cpCatalogEntry.getCPDefinitionId()
-						+ "ProductContent";
-				String quantityInputId = renderResponse.getNamespace() + cpCatalogEntry.getCPDefinitionId() + "Quantity";
-			%>
+							String productContentId = renderResponse.getNamespace() + cpCatalogEntry.getCPDefinitionId()
+									+ "ProductContent";
+							String quantityInputId = renderResponse.getNamespace() + cpCatalogEntry.getCPDefinitionId() + "Quantity";
+						%>
 			<div class="product-detail__actions">
 				<div class="autofit-col">
 					<commerce-ui:add-to-cart

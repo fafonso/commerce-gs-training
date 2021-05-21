@@ -1,16 +1,17 @@
 dependencies {
-	compileOnly group: "org.osgi", name: "org.osgi.core"
-	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
-	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.5.0"
+	//compileOnly group: "org.osgi", name: "org.osgi.core"
+	//compileOnly group: "org.osgi", name: "org.osgi.service.//component.annotations"
+	//compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bndlib", version: "3.5.0"
 	
-	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.api", version: "22.3.3"
-	compileOnly group: "com.liferay.commerce", name: "com.liferay.commerce.product.api", version: "29.3.0"
-	compileOnly group: 'com.liferay.commerce', name: 'com.liferay.commerce.product.definitions.web', version: "6.0.21"
-	compileOnly group: "com.liferay.portal", name: "release.portal.api", version:"7.3.1"
+	//compileOnly group: "//com.liferay.//commerce", name: "//com.liferay.//commerce.api", version: "22.3.3"
+	//compileOnly group: "//com.liferay.//commerce", name: "//com.liferay.//commerce.product.api", version: "23.4.0"
+	//compileOnly group: '//com.liferay.//commerce', name: '//com.liferay.//commerce.product.definitions.web', version: "6.0.21"
+	//compileOnly group: "//com.liferay.portal", name: "release.portal.api", version:"7.3.1"
 	compileOnly project(":modules:commerce-training-car:commerce-training-car-api")
+	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
 	
-	compileOnly group: "javax.portlet", name: "portlet-api"
-    compileOnly group: "javax.servlet", name: "javax.servlet-api"
-	compileOnly group: "org.osgi", name: "osgi.cmpn"
+	//compileOnly group: "javax.portlet", name: "portlet-api"
+    //compileOnly group: "javax.servlet", name: "javax.servlet-api"
+	//compileOnly group: "org.osgi", name: "osgi.cmpn"
 	
 }

@@ -40,6 +40,7 @@ import commerce.training.car.garage.service.CarGarageProductLocalService;
 	"commerce.order.validator.priority:Integer=10"
 }, service = CommerceOrderValidator.class)
 
+
 public class CustomOrderValidator implements CommerceOrderValidator {
 
 	/**
